@@ -1,0 +1,11 @@
+{
+  "hints": [],
+  "properties": [],
+  "groups": [
+    {
+      "sourceType": "com.wmq.sys.utils.mybatis.paginatc.OffsetLimitInterceptor",
+      "name": "offsetLimitInterceptor",
+      "type": "com.wmq.sys.utils.mybatis.paginatc.OffsetLimitInterceptor"
+    }
+  ]
+}

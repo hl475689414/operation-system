@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wmq.sys.dao.ImdbMessageMapper" >
+  <resultMap id="BaseResultMap" type="com.wmq.sys.entity.ImdbMessage" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="messageId" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="toUserId" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="myUserId" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="timestamp" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="target" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="type" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="message" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="bodies" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ext" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, messageId, toUserId, myUserId, timestamp, target, type, message, bodies, ext,
+    state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from imdb_message
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from imdb_message
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wmq.sys.entity.ImdbMessage" >
+    insert into imdb_message (id, messageId, toUserId,
+    myUserId, timestamp, target,
+    type, message, bodies,
+    ext, state)
+    values (#{id,jdbcType=INTEGER}, #{messageid,jdbcType=VARCHAR}, #{touserid,jdbcType=VARCHAR},
+    #{myuserid,jdbcType=VARCHAR}, #{timestamp,jdbcType=BIGINT}, #{target,jdbcType=INTEGER},
+    #{type,jdbcType=VARCHAR}, #{message,jdbcType=CHAR}, #{bodies,jdbcType=VARCHAR},
+    #{ext,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wmq.sys.entity.ImdbMessage" >
+    insert into imdb_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="messageid != null" >
+        messageId,
+      </if>
+      <if test="touserid != null" >
+        toUserId,
+      </if>
+      <if test="myuserid != null" >
+        myUserId,
+      </if>
+      <if test="timestamp != null" >
+        timestamp,
+      </if>
+      <if test="target != null" >
+        target,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="message != null" >
+        message,
+      </if>
+      <if test="bodies != null" >
+        bodies,
+      </if>
+      <if test="ext != null" >
+        ext,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="messageid != null" >
+        #{messageid,jdbcType=VARCHAR},
+      </if>
+      <if test="touserid != null" >
+        #{touserid,jdbcType=VARCHAR},
+      </if>
+      <if test="myuserid != null" >
+        #{myuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null" >
+        #{timestamp,jdbcType=BIGINT},
+      </if>
+      <if test="target != null" >
+        #{target,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null" >
+        #{message,jdbcType=CHAR},
+      </if>
+      <if test="bodies != null" >
+        #{bodies,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null" >
+        #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wmq.sys.entity.ImdbMessage" >
+    update imdb_message
+    <set >
+      <if test="messageid != null" >
+        messageId = #{messageid,jdbcType=VARCHAR},
+      </if>
+      <if test="touserid != null" >
+        toUserId = #{touserid,jdbcType=VARCHAR},
+      </if>
+      <if test="myuserid != null" >
+        myUserId = #{myuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null" >
+        timestamp = #{timestamp,jdbcType=BIGINT},
+      </if>
+      <if test="target != null" >
+        target = #{target,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="message != null" >
+        message = #{message,jdbcType=CHAR},
+      </if>
+      <if test="bodies != null" >
+        bodies = #{bodies,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null" >
+        ext = #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wmq.sys.entity.ImdbMessage" >
+    update imdb_message
+    set messageId = #{messageid,jdbcType=VARCHAR},
+      toUserId = #{touserid,jdbcType=VARCHAR},
+      myUserId = #{myuserid,jdbcType=VARCHAR},
+      timestamp = #{timestamp,jdbcType=BIGINT},
+      target = #{target,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
+      message = #{message,jdbcType=CHAR},
+      bodies = #{bodies,jdbcType=VARCHAR},
+      ext = #{ext,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectCountByMessageId" resultType="java.lang.Integer" >
+    select count(1) from imdb_message where messageId=#{messageid} and myUserId=#{userId}
+  </select>
+</mapper>

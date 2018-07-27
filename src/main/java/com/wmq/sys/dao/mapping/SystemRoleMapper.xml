@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wmq.sys.dao.SystemRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.wmq.sys.entity.SystemRole" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="roleName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="roleSign" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="remark" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="deptId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userIdCreate" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="modifiedTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="delFlag" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, roleName, roleSign, remark, deptId, userIdCreate, createTime, modifiedTime, delFlag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from system_role
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from system_role
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wmq.sys.entity.SystemRole" >
+    insert into system_role (id, roleName, roleSign, 
+      remark, deptId, userIdCreate, 
+      createTime, modifiedTime, delFlag
+      )
+    values (#{id,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{roleSign,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{deptId,jdbcType=INTEGER}, #{userIdCreate,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifiedTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wmq.sys.entity.SystemRole" >
+    insert into system_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleName != null" >
+        roleName,
+      </if>
+      <if test="roleSign != null" >
+        roleSign,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="deptId != null" >
+        deptId,
+      </if>
+      <if test="userIdCreate != null" >
+        userIdCreate,
+      </if>
+      <if test="createTime != null" >
+        createTime,
+      </if>
+      <if test="modifiedTime != null" >
+        modifiedTime,
+      </if>
+      <if test="delFlag != null" >
+        delFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleSign != null" >
+        #{roleSign,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="userIdCreate != null" >
+        #{userIdCreate,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null" >
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wmq.sys.entity.SystemRole" >
+    update system_role
+    <set >
+      <if test="roleName != null" >
+        roleName = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleSign != null" >
+        roleSign = #{roleSign,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null" >
+        deptId = #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="userIdCreate != null" >
+        userIdCreate = #{userIdCreate,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null" >
+        modifiedTime = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        delFlag = #{delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wmq.sys.entity.SystemRole" >
+    update system_role
+    set roleName = #{roleName,jdbcType=VARCHAR},
+      roleSign = #{roleSign,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      deptId = #{deptId,jdbcType=INTEGER},
+      userIdCreate = #{userIdCreate,jdbcType=INTEGER},
+      createTime = #{createTime,jdbcType=TIMESTAMP},
+      modifiedTime = #{modifiedTime,jdbcType=TIMESTAMP},
+      delFlag = #{delFlag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getRoleListPage" resultType="com.wmq.sys.vo.SysRoleListVo" >
+    SELECT sr.id,sr.roleName,sr.deptId,sd.`name` AS deptName,sr.remark FROM system_role sr
+    LEFT JOIN system_dept sd on sd.id = sr.deptId
+    WHERE sr.delFlag = 0
+  </select>
+
+  <select id="getRoleDeptName" resultType="java.lang.String" parameterType="java.lang.Integer" >
+    SELECT sd.`name` FROM system_role sr
+    LEFT JOIN system_dept sd on sd.id = sr.deptId
+    WHERE sr.id = #{id}
+  </select>
+
+  <select id="getDeptRoleList" resultType="com.wmq.sys.entity.SystemRole" parameterType="java.lang.Integer" >
+    SELECT id,roleName FROM system_role WHERE deptId = #{deptId}
+  </select>
+
+  <update id="updateByListDeptId" parameterType="java.util.List">
+    update system_role set
+    deptId=0
+    where deptId in
+    <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </update>
+</mapper>

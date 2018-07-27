@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wmq.sys.dao.CommonUserMapper" >
+  <resultMap id="BaseResultMap" type="com.wmq.sys.entity.CommonUser" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="username" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="PASSWORD" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="face" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="companyFace" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="email" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="tel" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="truename" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="companyId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="position" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="role" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="thirdAuth" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="loginDevice" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="companyCity" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="city" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="gender" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="weixin" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="companyWeixin" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="deviceId" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="registerTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="loginTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="isDelete" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="runDay" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="fromType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="loginDeviceBrand" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="qq" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, PASSWORD, face, companyFace, email, tel, truename, companyId, position, 
+    role, thirdAuth, loginDevice, companyCity, city, gender, weixin, companyWeixin, deviceId, 
+    registerTime, loginTime, state, isDelete, runDay, fromType, loginDeviceBrand, qq
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from common_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from common_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wmq.sys.entity.CommonUser" >
+    insert into common_user (id, username, PASSWORD, 
+      face, companyFace, email, 
+      tel, truename, companyId, 
+      position, role, thirdAuth, 
+      loginDevice, companyCity, city, 
+      gender, weixin, companyWeixin, 
+      deviceId, registerTime, loginTime, 
+      state, isDelete, runDay, 
+      fromType, loginDeviceBrand, qq
+      )
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{face,jdbcType=VARCHAR}, #{companyface,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{truename,jdbcType=VARCHAR}, #{companyid,jdbcType=INTEGER}, 
+      #{position,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, #{thirdauth,jdbcType=VARCHAR}, 
+      #{logindevice,jdbcType=VARCHAR}, #{companycity,jdbcType=INTEGER}, #{city,jdbcType=INTEGER}, 
+      #{gender,jdbcType=INTEGER}, #{weixin,jdbcType=VARCHAR}, #{companyweixin,jdbcType=VARCHAR},
+      #{deviceid,jdbcType=VARCHAR}, #{registertime,jdbcType=TIMESTAMP}, #{logintime,jdbcType=TIMESTAMP}, 
+      #{state,jdbcType=INTEGER}, #{isdelete,jdbcType=INTEGER}, #{runday,jdbcType=INTEGER},
+      #{fromtype,jdbcType=INTEGER}, #{logindevicebrand,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wmq.sys.entity.CommonUser" >
+    insert into common_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="face != null" >
+        face,
+      </if>
+      <if test="companyface != null" >
+        companyFace,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="truename != null" >
+        truename,
+      </if>
+      <if test="companyid != null" >
+        companyId,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="role != null" >
+        role,
+      </if>
+      <if test="thirdauth != null" >
+        thirdAuth,
+      </if>
+      <if test="logindevice != null" >
+        loginDevice,
+      </if>
+      <if test="companycity != null" >
+        companyCity,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="weixin != null" >
+        weixin,
+      </if>
+      <if test="companyweixin != null" >
+        companyWeixin,
+      </if>
+      <if test="deviceid != null" >
+        deviceId,
+      </if>
+      <if test="registertime != null" >
+        registerTime,
+      </if>
+      <if test="logintime != null" >
+        loginTime,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="isdelete != null" >
+        isDelete,
+      </if>
+      <if test="runday != null" >
+        runDay,
+      </if>
+      <if test="fromtype != null" >
+        fromType,
+      </if>
+      <if test="logindevicebrand != null" >
+        loginDeviceBrand,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="face != null" >
+        #{face,jdbcType=VARCHAR},
+      </if>
+      <if test="companyface != null" >
+        #{companyface,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="truename != null" >
+        #{truename,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null" >
+        #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=INTEGER},
+      </if>
+      <if test="thirdauth != null" >
+        #{thirdauth,jdbcType=VARCHAR},
+      </if>
+      <if test="logindevice != null" >
+        #{logindevice,jdbcType=VARCHAR},
+      </if>
+      <if test="companycity != null" >
+        #{companycity,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=INTEGER},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="weixin != null" >
+        #{weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="companyweixin != null" >
+        #{companyweixin,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceid != null" >
+        #{deviceid,jdbcType=VARCHAR},
+      </if>
+      <if test="registertime != null" >
+        #{registertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logintime != null" >
+        #{logintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="runday != null" >
+        #{runday,jdbcType=INTEGER},
+      </if>
+      <if test="fromtype != null" >
+        #{fromtype,jdbcType=INTEGER},
+      </if>
+      <if test="logindevicebrand != null" >
+        #{logindevicebrand,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wmq.sys.entity.CommonUser" >
+    update common_user
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="face != null" >
+        face = #{face,jdbcType=VARCHAR},
+      </if>
+      <if test="companyface != null" >
+        companyFace = #{companyface,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="truename != null" >
+        truename = #{truename,jdbcType=VARCHAR},
+      </if>
+      <if test="companyid != null" >
+        companyId = #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=INTEGER},
+      </if>
+      <if test="thirdauth != null" >
+        thirdAuth = #{thirdauth,jdbcType=VARCHAR},
+      </if>
+      <if test="logindevice != null" >
+        loginDevice = #{logindevice,jdbcType=VARCHAR},
+      </if>
+      <if test="companycity != null" >
+        companyCity = #{companycity,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=INTEGER},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="weixin != null" >
+        weixin = #{weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="companyweixin != null" >
+        companyWeixin = #{companyweixin,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceid != null" >
+        deviceId = #{deviceid,jdbcType=VARCHAR},
+      </if>
+      <if test="registertime != null" >
+        registerTime = #{registertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logintime != null" >
+        loginTime = #{logintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null" >
+        isDelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="runday != null" >
+        runDay = #{runday,jdbcType=INTEGER},
+      </if>
+      <if test="fromtype != null" >
+        fromType = #{fromtype,jdbcType=INTEGER},
+      </if>
+      <if test="logindevicebrand != null" >
+        loginDeviceBrand = #{logindevicebrand,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wmq.sys.entity.CommonUser" >
+    update common_user
+    set username = #{username,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      face = #{face,jdbcType=VARCHAR},
+      companyFace = #{companyface,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      truename = #{truename,jdbcType=VARCHAR},
+      companyId = #{companyid,jdbcType=INTEGER},
+      position = #{position,jdbcType=VARCHAR},
+      role = #{role,jdbcType=INTEGER},
+      thirdAuth = #{thirdauth,jdbcType=VARCHAR},
+      loginDevice = #{logindevice,jdbcType=VARCHAR},
+      companyCity = #{companycity,jdbcType=INTEGER},
+      city = #{city,jdbcType=INTEGER},
+      gender = #{gender,jdbcType=INTEGER},
+      weixin = #{weixin,jdbcType=VARCHAR},
+      companyWeixin = #{companyweixin,jdbcType=VARCHAR},
+      deviceId = #{deviceid,jdbcType=VARCHAR},
+      registerTime = #{registertime,jdbcType=TIMESTAMP},
+      loginTime = #{logintime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=INTEGER},
+      isDelete = #{isdelete,jdbcType=INTEGER},
+      runDay = #{runday,jdbcType=INTEGER},
+      fromType = #{fromtype,jdbcType=INTEGER},
+      loginDeviceBrand = #{logindevicebrand,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getUserListPage" resultType="com.wmq.sys.vo.CommonUserListVo" >
+    SELECT cus.id,cc.id AS companyId,cus.username AS userName,cus.truename AS trueName,cus.gender,cus.loginTime,cus.registerTime,cc.fullName AS companyName,cus.state
+    FROM
+    common_user cus
+    LEFT JOIN common_company cc on cc.id = cus.companyId
+    WHERE cus.isDelete = 0
+    <if test="keys != null and keys != ''">
+      AND (cus.username LIKE CONCAT('%', #{keys}, '%') OR cus.truename LIKE CONCAT('%', #{keys}, '%') OR cc.fullName LIKE CONCAT('%', #{keys}, '%'))
+    </if>
+    <if test="sex > -1">
+      AND cus.gender = #{sex}
+    </if>
+    <if test="state > -1">
+      AND cus.state = #{state}
+    </if>
+    <if test="isCompany == 0">
+      AND cus.companyId = 0
+    </if>
+    <if test="isCompany == 1">
+      AND cus.companyId > 0
+    </if>
+    ORDER BY loginTime DESC
+  </select>
+
+  <select id="getUserInfo" resultType="com.wmq.sys.vo.UserInfoVo" parameterType="java.lang.Integer" >
+    SELECT id,state,username AS userName,truename AS trueName,gender,weixin,loginTime,registerTime FROM common_user WHERE id = #{userId}
+  </select>
+
+  <select id="getUserTotal" resultType="java.lang.Integer" >
+    SELECT IFNULL(COUNT(1),0) FROM common_user WHERE isDelete = 0
+  </select>
+
+  <select id="getCompanyTotal" resultType="java.lang.Integer" >
+    SELECT IFNULL(COUNT(1),0) FROM common_user WHERE isDelete = 0 AND companyId > 0
+  </select>
+
+  <select id="getPersonalTotal" resultType="java.lang.Integer" >
+    SELECT IFNULL(COUNT(1),0) FROM common_user WHERE isDelete = 0 AND companyId = 0
+  </select>
+
+  <select id="getToadyAddCompanyTotal" resultType="java.lang.Integer" >
+     SELECT IFNULL(COUNT(1),0) FROM common_user WHERE isDelete = 0 AND companyId > 0 AND to_days(registerTime) = to_days(now())
+  </select>
+
+  <select id="getTodayAddUserTotal" resultType="java.lang.Integer" >
+    SELECT IFNULL(COUNT(1),0) FROM common_user WHERE isDelete = 0 AND companyId = 0 AND to_days(registerTime) = to_days(now())
+  </select>
+
+  <select id="getUserToatlDays" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    SELECT IFNULL(COUNT(1),0) FROM common_user WHERE isDelete = 0 AND date(registerTime) &lt; #{time}
+  </select>
+
+  <select id="getToadyUserTotalList" resultType="map" >
+    SELECT DATE_FORMAT(registerTime,'%H') hours,COUNT(1) count FROM common_user WHERE isDelete = 0 AND to_days(registerTime) = to_days(now()) GROUP BY hours
+  </select>
+
+  <select id="getYesterdayUserTotalList" resultType="map" >
+    SELECT DATE_FORMAT(registerTime,'%H') hours,COUNT(1) count FROM common_user WHERE isDelete = 0 AND TO_DAYS(NOW()) - TO_DAYS(registerTime) <![CDATA[<=]]> 1 GROUP BY hours
+  </select>
+
+  <select id="getDaysUserTotalList" resultType="map" parameterType="java.lang.Integer">
+      SELECT DATE_FORMAT(registerTime,'%Y-%m-%d') days,COUNT(1) count FROM common_user where isDelete = 0 AND DATE_SUB(CURDATE(), INTERVAL #{days} DAY) <![CDATA[<=]]> date(registerTime) AND date(registerTime) &lt; CURDATE() GROUP BY days
+  </select>
+
+  <select id="getCustomizeUserTotalList" resultType="map">
+    SELECT DATE_FORMAT(registerTime,'%Y-%m-%d') days,COUNT(1) count FROM common_user where isDelete = 0 AND registerTime BETWEEN #{startDate} AND #{endDate} GROUP BY days
+  </select>
+
+  <select id="getToadyNewRegisteredCompanyTotalList" resultType="map">
+    SELECT DATE_FORMAT(registerTime,'%H') hours,COUNT(1) count FROM common_user WHERE isDelete = 0 AND companyId > 0 AND to_days(registerTime) = to_days(now()) GROUP BY hours
+  </select>
+
+  <select id="getYesterdayNewRegisteredCompanyTotalList" resultType="map">
+    SELECT DATE_FORMAT(registerTime,'%H') hours,COUNT(1) count FROM common_user WHERE isDelete = 0 AND companyId > 0 AND TO_DAYS(NOW()) - TO_DAYS(registerTime) <![CDATA[<=]]> 1 GROUP BY hours
+  </select>
+
+  <select id="getDaysNewRegisteredCompanyTotalList" resultType="map" parameterType="java.lang.Integer">
+    SELECT DATE_FORMAT(registerTime,'%Y-%m-%d') days,COUNT(1) count FROM common_user where isDelete = 0 AND companyId > 0 AND DATE_SUB(CURDATE(), INTERVAL #{days} DAY) <![CDATA[<=]]> date(registerTime) AND date(registerTime) &lt; CURDATE() GROUP BY days
+  </select>
+
+  <select id="getCustomizeNewRegisteredCompanyTotalList" resultType="map">
+    SELECT DATE_FORMAT(registerTime,'%Y-%m-%d') days,COUNT(1) count FROM common_user where isDelete = 0 AND companyId > 0 AND registerTime BETWEEN #{startDate} AND #{endDate} GROUP BY days
+  </select>
+
+  <select id="getToadyNewRegisteredPersonalTotalList" resultType="map">
+    SELECT DATE_FORMAT(registerTime,'%H') hours,COUNT(1) count FROM common_user WHERE isDelete = 0 AND companyId = 0 AND to_days(registerTime) = to_days(now()) GROUP BY hours
+  </select>
+
+  <select id="getYesterdayNewRegisteredPersonalTotalList" resultType="map">
+    SELECT DATE_FORMAT(registerTime,'%H') hours,COUNT(1) count FROM common_user WHERE isDelete = 0 AND companyId = 0 AND TO_DAYS(NOW()) - TO_DAYS(registerTime) <![CDATA[<=]]> 1 GROUP BY hours
+  </select>
+
+  <select id="getDaysNewRegisteredPersonalTotalList" resultType="map" parameterType="java.lang.Integer">
+    SELECT DATE_FORMAT(registerTime,'%Y-%m-%d') days,COUNT(1) count FROM common_user where isDelete = 0 AND companyId = 0 AND DATE_SUB(CURDATE(), INTERVAL #{days} DAY) <![CDATA[<=]]> date(registerTime) AND date(registerTime) &lt; CURDATE() GROUP BY days
+  </select>
+
+  <select id="getCustomizeNewRegisteredPersonalTotalList" resultType="map">
+    SELECT DATE_FORMAT(registerTime,'%Y-%m-%d') days,COUNT(1) count FROM common_user where isDelete = 0 AND companyId = 0 AND registerTime BETWEEN #{startDate} AND #{endDate} GROUP BY days
+  </select>
+
+  <select id="getCompanyUserToatlDays" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    SELECT IFNULL(COUNT(1),0) FROM common_user WHERE isDelete = 0 AND companyId > 0 AND date(registerTime) &lt; #{time}
+  </select>
+
+  <select id="getDaysCompanyUserTotalList" resultType="map" parameterType="java.lang.Integer">
+    SELECT DATE_FORMAT(registerTime,'%Y-%m-%d') days,COUNT(1) count FROM common_user where isDelete = 0 AND companyId > 0 AND DATE_SUB(CURDATE(), INTERVAL #{days} DAY) <![CDATA[<=]]> date(registerTime) AND date(registerTime) &lt; CURDATE() GROUP BY days
+  </select>
+
+  <select id="getPersonalUserToatlDays" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    SELECT IFNULL(COUNT(1),0) FROM common_user WHERE isDelete = 0 AND companyId = 0 AND date(registerTime) &lt; #{time}
+  </select>
+
+  <select id="getDaysPersonalUserTotalList" resultType="map" parameterType="java.lang.Integer">
+    SELECT DATE_FORMAT(registerTime,'%Y-%m-%d') days,COUNT(1) count FROM common_user where isDelete = 0 AND companyId = 0 AND DATE_SUB(CURDATE(), INTERVAL #{days} DAY) <![CDATA[<=]]> date(registerTime) AND date(registerTime) &lt; CURDATE() GROUP BY days
+  </select>
+</mapper>

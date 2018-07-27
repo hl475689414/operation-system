@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wmq.sys.dao.SystemRoleMenuMapper" >
+  <resultMap id="BaseResultMap" type="com.wmq.sys.entity.SystemRoleMenu" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="roleId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="menuId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, roleId, menuId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from system_role_menu
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from system_role_menu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wmq.sys.entity.SystemRoleMenu" >
+    insert into system_role_menu (id, roleId, menuId
+      )
+    values (#{id,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{menuId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wmq.sys.entity.SystemRoleMenu" >
+    insert into system_role_menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roleId != null" >
+        roleId,
+      </if>
+      <if test="menuId != null" >
+        menuId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="menuId != null" >
+        #{menuId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wmq.sys.entity.SystemRoleMenu" >
+    update system_role_menu
+    <set >
+      <if test="roleId != null" >
+        roleId = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="menuId != null" >
+        menuId = #{menuId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wmq.sys.entity.SystemRoleMenu" >
+    update system_role_menu
+    set roleId = #{roleId,jdbcType=INTEGER},
+      menuId = #{menuId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getRoleChoiceList" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    SELECT menuId FROM system_role_menu WHERE roleId = #{roleId}
+  </select>
+
+  <delete id="deleteByPrimaryRoleId" parameterType="java.lang.Integer" >
+    delete from system_role_menu
+    where roleId = #{roleId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertRoleMenus" parameterType="java.util.List">
+    insert into system_role_menu (roleId, menuId)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.roleId,jdbcType=INTEGER},#{item.menuId,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+
+  <delete id="deleteByRoleMenuList" parameterType="java.util.List" >
+    delete from system_role_menu
+    where menuId IN
+    <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
+</mapper>

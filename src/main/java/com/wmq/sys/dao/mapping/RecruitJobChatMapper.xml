@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wmq.sys.dao.RecruitJobChatMapper" >
+  <resultMap id="BaseResultMap" type="com.wmq.sys.entity.RecruitJobChat" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="talkId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="hrId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="replyState" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="openTalkUser" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, talkId, hrId, userId, replyState, openTalkUser, createTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from recruit_job_chat
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from recruit_job_chat
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wmq.sys.entity.RecruitJobChat" >
+    insert into recruit_job_chat (id, talkId, hrId, 
+      userId, replyState, openTalkUser, 
+      createTime)
+    values (#{id,jdbcType=INTEGER}, #{talkId,jdbcType=INTEGER}, #{hrId,jdbcType=INTEGER},
+      #{userId,jdbcType=INTEGER}, #{replyState,jdbcType=INTEGER}, #{openTalkUser,jdbcType=INTEGER},
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wmq.sys.entity.RecruitJobChat" >
+    insert into recruit_job_chat
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="talkId != null" >
+        talkId,
+      </if>
+      <if test="hrId != null" >
+        hrId,
+      </if>
+      <if test="userId != null" >
+        userId,
+      </if>
+      <if test="replyState != null" >
+        replyState,
+      </if>
+      <if test="openTalkUser != null" >
+        openTalkUser,
+      </if>
+      <if test="createTime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="talkId != null" >
+        #{talkId,jdbcType=INTEGER},
+      </if>
+      <if test="hrId != null" >
+        #{hrId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="replyState != null" >
+        #{replyState,jdbcType=INTEGER},
+      </if>
+      <if test="openTalkUser != null" >
+        #{openTalkUser,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wmq.sys.entity.RecruitJobChat" >
+    update recruit_job_chat
+    <set >
+      <if test="talkId != null" >
+        talkId = #{talkId,jdbcType=INTEGER},
+      </if>
+      <if test="hrId != null" >
+        hrId = #{hrId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        userId = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="replyState != null" >
+        replyState = #{replyState,jdbcType=INTEGER},
+      </if>
+      <if test="openTalkUser != null" >
+        openTalkUser = #{openTalkUser,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wmq.sys.entity.RecruitJobChat" >
+    update recruit_job_chat
+    set talkId = #{talkId,jdbcType=INTEGER},
+      hrId = #{hrId,jdbcType=INTEGER},
+      userId = #{userId,jdbcType=INTEGER},
+      replyState = #{replyState,jdbcType=INTEGER},
+      openTalkUser = #{openTalkUser,jdbcType=INTEGER},
+      createTime = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getJobChatCount" resultType="java.lang.Integer" parameterType="com.wmq.sys.entity.RecruitJobChat">
+    select count(1) from recruit_job_chat where talkId = #{talkId} AND  userId = #{userId} AND hrId = #{hrId} and openTalkUser = #{openTalkUser}
+  </select>
+</mapper>

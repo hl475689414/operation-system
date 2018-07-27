@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wmq.sys.dao.CommonAuthOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.wmq.sys.entity.CommonAuthOrder" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="subject" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="authType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="companyId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="money" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="orderTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="payType" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="payTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="discount" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="vipPrice" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="type" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, subject, authType, companyId, money, orderTime, state, payType, payTime, discount, 
+    vipPrice, type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from common_auth_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from common_auth_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wmq.sys.entity.CommonAuthOrder" >
+    insert into common_auth_order (id, subject, authType, 
+      companyId, money, orderTime, 
+      state, payType, payTime, 
+      discount, vipPrice, type
+      )
+    values (#{id,jdbcType=INTEGER}, #{subject,jdbcType=VARCHAR}, #{authtype,jdbcType=INTEGER}, 
+      #{companyid,jdbcType=INTEGER}, #{money,jdbcType=INTEGER}, #{ordertime,jdbcType=TIMESTAMP}, 
+      #{state,jdbcType=INTEGER}, #{paytype,jdbcType=VARCHAR}, #{paytime,jdbcType=TIMESTAMP},
+      #{discount,jdbcType=VARCHAR}, #{vipprice,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wmq.sys.entity.CommonAuthOrder" >
+    insert into common_auth_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="subject != null" >
+        subject,
+      </if>
+      <if test="authtype != null" >
+        authType,
+      </if>
+      <if test="companyid != null" >
+        companyId,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="ordertime != null" >
+        orderTime,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="paytype != null" >
+        payType,
+      </if>
+      <if test="paytime != null" >
+        payTime,
+      </if>
+      <if test="discount != null" >
+        discount,
+      </if>
+      <if test="vipprice != null" >
+        vipPrice,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="subject != null" >
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="authtype != null" >
+        #{authtype,jdbcType=INTEGER},
+      </if>
+      <if test="companyid != null" >
+        #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="ordertime != null" >
+        #{ordertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="paytype != null" >
+        #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="paytime != null" >
+        #{paytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="vipprice != null" >
+        #{vipprice,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wmq.sys.entity.CommonAuthOrder" >
+    update common_auth_order
+    <set >
+      <if test="subject != null" >
+        subject = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="authtype != null" >
+        authType = #{authtype,jdbcType=INTEGER},
+      </if>
+      <if test="companyid != null" >
+        companyId = #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="ordertime != null" >
+        orderTime = #{ordertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="paytype != null" >
+        payType = #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="paytime != null" >
+        payTime = #{paytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="discount != null" >
+        discount = #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="vipprice != null" >
+        vipPrice = #{vipprice,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wmq.sys.entity.CommonAuthOrder" >
+    update common_auth_order
+    set subject = #{subject,jdbcType=VARCHAR},
+      authType = #{authtype,jdbcType=INTEGER},
+      companyId = #{companyid,jdbcType=INTEGER},
+      money = #{money,jdbcType=INTEGER},
+      orderTime = #{ordertime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=INTEGER},
+      payType = #{paytype,jdbcType=VARCHAR},
+      payTime = #{paytime,jdbcType=TIMESTAMP},
+      discount = #{discount,jdbcType=VARCHAR},
+      vipPrice = #{vipprice,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getVipAmount" resultType="java.lang.Integer" >
+    SELECT IFNULL(SUM(money),0) FROM common_auth_order WHERE type = 0 AND state = 1
+  </select>
+
+  <select id="getUpgradeVipAmount" resultType="java.lang.Integer" >
+    SELECT IFNULL(SUM(money),0) FROM common_auth_order WHERE type = 1 AND state = 1
+  </select>
+
+  <select id="getVipToatlAmountDays" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    SELECT IFNULL(SUM(money),0) FROM common_auth_order WHERE type = 0 AND state = 1 AND date(payTime) &lt; #{time}
+  </select>
+
+  <select id="getUpgradeVipToatlAmountDays" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    SELECT IFNULL(SUM(money),0) FROM common_auth_order WHERE type = 1 AND state = 1 AND date(payTime) &lt; #{time}
+  </select>
+
+  <select id="getToadyVipIncomeTotalList" resultType="map" >
+    SELECT DATE_FORMAT(orderTime,'%H') hours,SUM(money) AS money FROM common_auth_order WHERE type = 0 AND state = 1 AND to_days(orderTime) = to_days(now()) GROUP BY hours
+  </select>
+
+  <select id="getYesterdayVipIncomeTotalList" resultType="map" >
+    SELECT DATE_FORMAT(orderTime,'%H') hours,SUM(money) AS money FROM common_auth_order WHERE type = 0 AND state = 1 AND TO_DAYS(NOW()) - TO_DAYS(orderTime) <![CDATA[<=]]> 1 GROUP BY hours
+  </select>
+
+  <select id="getDaysVipIncomeTotalList" resultType="map" parameterType="java.lang.Integer" >
+    SELECT DATE_FORMAT(orderTime,'%Y-%m-%d') days,SUM(money) AS money FROM common_auth_order where type = 0 AND state = 1 AND DATE_SUB(CURDATE(), INTERVAL #{days} DAY) <![CDATA[<=]]> date(orderTime) AND date(orderTime) &lt; CURDATE() GROUP BY days
+  </select>
+
+  <select id="getCustomizeVipIncomeTotalList" resultType="map" >
+    SELECT DATE_FORMAT(orderTime,'%Y-%m-%d') days,SUM(money) AS money FROM common_auth_order where type = 0 AND state = 1 AND orderTime BETWEEN #{startDate} AND #{endDate} GROUP BY days
+  </select>
+
+  <select id="getToadyUpgradeVipIncomeTotalList" resultType="map" >
+    SELECT DATE_FORMAT(orderTime,'%H') hours,SUM(money) AS money FROM common_auth_order WHERE type = 1 AND state = 1 AND to_days(orderTime) = to_days(now()) GROUP BY hours
+  </select>
+
+  <select id="getYesterdayUpgradeVipIncomeTotalList" resultType="map" >
+    SELECT DATE_FORMAT(orderTime,'%H') hours,SUM(money) AS money FROM common_auth_order WHERE type = 1 AND state = 1 AND TO_DAYS(NOW()) - TO_DAYS(orderTime) <![CDATA[<=]]> 1 GROUP BY hours
+  </select>
+
+  <select id="getDaysUpgradeVipIncomeTotalList" resultType="map" parameterType="java.lang.Integer" >
+    SELECT DATE_FORMAT(orderTime,'%Y-%m-%d') days,SUM(money) AS money FROM common_auth_order where type = 1 AND state = 1 AND DATE_SUB(CURDATE(), INTERVAL #{days} DAY) <![CDATA[<=]]> date(orderTime) AND date(orderTime) &lt; CURDATE() GROUP BY days
+  </select>
+
+  <select id="getCustomizeUpgradeVipIncomeTotalList" resultType="map" >
+    SELECT DATE_FORMAT(orderTime,'%Y-%m-%d') days,SUM(money) AS money FROM common_auth_order where type = 1 AND state = 1 AND orderTime BETWEEN #{startDate} AND #{endDate} GROUP BY days
+  </select>
+
+  <select id="getSilverVipDaysDataList" resultType="map" >
+    SELECT DATE_FORMAT(orderTime,'%Y-%m-%d') days,COUNT(companyId) AS count,SUM(money) AS money FROM common_auth_order where authType = 1 AND state = 1 AND DATE_SUB(CURDATE(), INTERVAL 7 DAY) <![CDATA[<=]]> date(orderTime) AND date(orderTime) &lt; CURDATE() GROUP BY days
+  </select>
+
+  <select id="getVipDaysDataList" resultType="map" parameterType="java.lang.Integer" >
+    SELECT DATE_FORMAT(orderTime,'%Y-%m-%d') days,COUNT(companyId) AS count,SUM(money) AS money FROM common_auth_order where authType = #{authType} AND state = 1 AND type = 0 AND DATE_SUB(CURDATE(), INTERVAL 7 DAY) <![CDATA[<=]]> date(orderTime) AND date(orderTime) &lt; CURDATE() GROUP BY days
+  </select>
+
+  <select id="getUpgradeVipDaysDataList" resultType="map" parameterType="java.lang.Integer" >
+    SELECT DATE_FORMAT(orderTime,'%Y-%m-%d') days,COUNT(companyId) AS count,SUM(money) AS money FROM common_auth_order where authType = #{authType} AND state = 1 AND type = 1 AND DATE_SUB(CURDATE(), INTERVAL 7 DAY) <![CDATA[<=]]> date(orderTime) AND date(orderTime) &lt; CURDATE() GROUP BY days
+  </select>
+
+  <select id="getAuthOrderListPage" resultType="com.wmq.sys.vo.CommonAuthOrderListVo" >
+    SELECT auo.id,cus.username AS mobile,auo.payType,DATE_FORMAT(auo.orderTime,'%Y-%m-%d %H:%m:%s') AS orderTime,auo.`subject`,auo.money,auo.state,cus.id AS userId
+    FROM common_auth_order auo
+    INNER JOIN common_user cus on cus.companyId = auo.companyId
+    WHERE auo.state > 0
+    <if test="key != null and key != ''">
+      AND (cus.username LIKE CONCAT(CONCAT('%', #{key}), '%') OR cus.truename LIKE CONCAT(CONCAT('%', #{key}), '%') OR auo.id = #{key})
+    </if>
+    <if test="payType != null and payType != ''">
+      AND auo.payType = #{payType}
+    </if>
+    <if test="state > 0">
+      AND auo.state = #{state}
+    </if>
+    ORDER BY auo.orderTime DESC
+  </select>
+
+  <select id="getAuthOrderInfo" resultType="com.wmq.sys.vo.CommonAuthOrderInfoVo" parameterType="java.lang.String" >
+    SELECT cao.id,cao.state,cus.truename AS buyerName,cao.payType,cus.username AS buyerMobile,DATE_FORMAT(cao.orderTime,'%Y-%m-%d %H:%m:%s') AS orderTime,cao.`subject`,cao.money
+    FROM common_auth_order cao
+    LEFT JOIN common_user cus on cus.companyId = cao.companyId
+    WHERE cao.id = #{id}
+  </select>
+</mapper>

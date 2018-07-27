@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wmq.sys.dao.RecruitResumeProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.wmq.sys.entity.RecruitResumeProject" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="project" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="cotent" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="projectURL" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="projectResult" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="workRole" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="beginTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="endTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userId, project, cotent, projectURL, projectResult, workRole, beginTime, endTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from recruit_resume_project
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from recruit_resume_project
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wmq.sys.entity.RecruitResumeProject" >
+    insert into recruit_resume_project (id, userId, project, 
+      cotent, projectURL, projectResult, 
+      workRole, beginTime, endTime
+      )
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{project,jdbcType=VARCHAR}, 
+      #{cotent,jdbcType=VARCHAR}, #{projecturl,jdbcType=VARCHAR}, #{projectresult,jdbcType=VARCHAR}, 
+      #{workrole,jdbcType=VARCHAR}, #{begintime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wmq.sys.entity.RecruitResumeProject" >
+    insert into recruit_resume_project
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="project != null" >
+        project,
+      </if>
+      <if test="cotent != null" >
+        cotent,
+      </if>
+      <if test="projecturl != null" >
+        projectURL,
+      </if>
+      <if test="projectresult != null" >
+        projectResult,
+      </if>
+      <if test="workrole != null" >
+        workRole,
+      </if>
+      <if test="begintime != null" >
+        beginTime,
+      </if>
+      <if test="endtime != null" >
+        endTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="project != null" >
+        #{project,jdbcType=VARCHAR},
+      </if>
+      <if test="cotent != null" >
+        #{cotent,jdbcType=VARCHAR},
+      </if>
+      <if test="projecturl != null" >
+        #{projecturl,jdbcType=VARCHAR},
+      </if>
+      <if test="projectresult != null" >
+        #{projectresult,jdbcType=VARCHAR},
+      </if>
+      <if test="workrole != null" >
+        #{workrole,jdbcType=VARCHAR},
+      </if>
+      <if test="begintime != null" >
+        #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wmq.sys.entity.RecruitResumeProject" >
+    update recruit_resume_project
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="project != null" >
+        project = #{project,jdbcType=VARCHAR},
+      </if>
+      <if test="cotent != null" >
+        cotent = #{cotent,jdbcType=VARCHAR},
+      </if>
+      <if test="projecturl != null" >
+        projectURL = #{projecturl,jdbcType=VARCHAR},
+      </if>
+      <if test="projectresult != null" >
+        projectResult = #{projectresult,jdbcType=VARCHAR},
+      </if>
+      <if test="workrole != null" >
+        workRole = #{workrole,jdbcType=VARCHAR},
+      </if>
+      <if test="begintime != null" >
+        beginTime = #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null" >
+        endTime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wmq.sys.entity.RecruitResumeProject" >
+    update recruit_resume_project
+    set userId = #{userid,jdbcType=INTEGER},
+      project = #{project,jdbcType=VARCHAR},
+      cotent = #{cotent,jdbcType=VARCHAR},
+      projectURL = #{projecturl,jdbcType=VARCHAR},
+      projectResult = #{projectresult,jdbcType=VARCHAR},
+      workRole = #{workrole,jdbcType=VARCHAR},
+      beginTime = #{begintime,jdbcType=TIMESTAMP},
+      endTime = #{endtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getResumeProjectList" resultType="com.wmq.sys.vo.RecruitResumeProjectListVo" parameterType="java.lang.Integer" >
+    SELECT id,project,projectURL,workRole,cotent,projectResult FROM recruit_resume_project WHERE userId = #{userId} ORDER BY endTime DESC
+  </select>
+</mapper>

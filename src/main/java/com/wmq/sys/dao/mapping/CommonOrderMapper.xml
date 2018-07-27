@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wmq.sys.dao.CommonOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.wmq.sys.entity.CommonOrder" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="toUserId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="shareUserId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="money" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="shoping" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="shopingType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="payType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="updateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="outherInfo" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userId, toUserId, shareUserId, money, shoping, shopingType, payType, state, createTime, 
+    updateTime, outherInfo
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from common_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from common_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wmq.sys.entity.CommonOrder" >
+    insert into common_order (id, userId, toUserId, 
+      shareUserId, money, shoping, 
+      shopingType, payType, state, 
+      createTime, updateTime, outherInfo
+      )
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{touserid,jdbcType=INTEGER}, 
+      #{shareuserid,jdbcType=INTEGER}, #{money,jdbcType=INTEGER}, #{shoping,jdbcType=INTEGER}, 
+      #{shopingtype,jdbcType=INTEGER}, #{paytype,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, #{outherinfo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wmq.sys.entity.CommonOrder" >
+    insert into common_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="touserid != null" >
+        toUserId,
+      </if>
+      <if test="shareuserid != null" >
+        shareUserId,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="shoping != null" >
+        shoping,
+      </if>
+      <if test="shopingtype != null" >
+        shopingType,
+      </if>
+      <if test="paytype != null" >
+        payType,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="outherinfo != null" >
+        outherInfo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="touserid != null" >
+        #{touserid,jdbcType=INTEGER},
+      </if>
+      <if test="shareuserid != null" >
+        #{shareuserid,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="shoping != null" >
+        #{shoping,jdbcType=INTEGER},
+      </if>
+      <if test="shopingtype != null" >
+        #{shopingtype,jdbcType=INTEGER},
+      </if>
+      <if test="paytype != null" >
+        #{paytype,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outherinfo != null" >
+        #{outherinfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wmq.sys.entity.CommonOrder" >
+    update common_order
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="touserid != null" >
+        toUserId = #{touserid,jdbcType=INTEGER},
+      </if>
+      <if test="shareuserid != null" >
+        shareUserId = #{shareuserid,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="shoping != null" >
+        shoping = #{shoping,jdbcType=INTEGER},
+      </if>
+      <if test="shopingtype != null" >
+        shopingType = #{shopingtype,jdbcType=INTEGER},
+      </if>
+      <if test="paytype != null" >
+        payType = #{paytype,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outherinfo != null" >
+        outherInfo = #{outherinfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wmq.sys.entity.CommonOrder" >
+    update common_order
+    set userId = #{userid,jdbcType=INTEGER},
+      toUserId = #{touserid,jdbcType=INTEGER},
+      shareUserId = #{shareuserid,jdbcType=INTEGER},
+      money = #{money,jdbcType=INTEGER},
+      shoping = #{shoping,jdbcType=INTEGER},
+      shopingType = #{shopingtype,jdbcType=INTEGER},
+      payType = #{paytype,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      outherInfo = #{outherinfo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getCourseAmount" resultType="java.lang.Integer">
+    SELECT IFNULL(SUM(money),0) FROM common_order WHERE shopingType = 5 AND state = 2
+  </select>
+
+  <select id="getCourseToatlAmountDays" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    SELECT IFNULL(SUM(money),0) FROM common_order WHERE shopingType = 5 AND state = 2 AND date(createTime) &lt; #{time}
+  </select>
+
+  <select id="getTodayOrderIncomeTotalList" resultType="map" >
+    SELECT days,CONVERT((IF(A.count IS NULL, 0, A.count) + IF(C.count IS NULL, 0, C.count)*100)/100, DECIMAL(10,2)) as money  FROM
+    (SELECT IFNULL(SUM(money),0) AS count, DATE_FORMAT(createTime, '%H') AS hour FROM common_order WHERE shopingType = 5 AND state = 2 AND TO_DAYS(createTime) = TO_DAYS(NOW()) GROUP BY hour ORDER BY 1) A
+    RIGHT JOIN (SELECT one.hours + two.hours AS days
+    FROM (SELECT 0 hours
+    UNION ALL SELECT 1 hours
+    UNION ALL SELECT 2 hours
+    UNION ALL SELECT 3 hours
+    UNION ALL SELECT 4 hours
+    UNION ALL SELECT 5 hours
+    UNION ALL SELECT 6 hours
+    UNION ALL SELECT 7 hours
+    UNION ALL SELECT 8 hours
+    UNION ALL SELECT 9 hours) one
+    CROSS JOIN (SELECT 0 hours
+    UNION ALL SELECT 10 hours
+    UNION ALL SELECT 20 hours) two
+    WHERE (one.hours + two.hours) &lt; 24) B ON A.hour = CONVERT(B.days, SIGNED)
+    LEFT JOIN (SELECT IFNULL(SUM(money),0) AS count, DATE_FORMAT(orderTime, '%H') AS hour FROM common_auth_order WHERE state = 1 AND TO_DAYS(orderTime) = TO_DAYS(NOW()) GROUP BY hour ORDER BY 1) C ON C.hour = CONVERT(B.days, SIGNED)
+    ORDER BY days
+  </select>
+
+  <select id="getYesterdayOrderIncomeTotalList" resultType="map" >
+    SELECT days,CONVERT((IF(A.count IS NULL, 0, A.count) + IF(C.count IS NULL, 0, C.count)*100)/100, DECIMAL(10,2)) as money  FROM
+    (SELECT IFNULL(SUM(money),0) AS count, DATE_FORMAT(createTime, '%H') AS hour FROM common_order WHERE shopingType = 5 AND state = 2 AND TO_DAYS(NOW()) - TO_DAYS(createTime) <![CDATA[<=]]> 1 GROUP BY hour ORDER BY 1) A
+    RIGHT JOIN (SELECT one.hours + two.hours AS days
+    FROM (SELECT 0 hours
+    UNION ALL SELECT 1 hours
+    UNION ALL SELECT 2 hours
+    UNION ALL SELECT 3 hours
+    UNION ALL SELECT 4 hours
+    UNION ALL SELECT 5 hours
+    UNION ALL SELECT 6 hours
+    UNION ALL SELECT 7 hours
+    UNION ALL SELECT 8 hours
+    UNION ALL SELECT 9 hours) one
+    CROSS JOIN (SELECT 0 hours
+    UNION ALL SELECT 10 hours
+    UNION ALL SELECT 20 hours) two
+    WHERE (one.hours + two.hours) &lt; 24) B ON A.hour = CONVERT(B.days, SIGNED)
+    LEFT JOIN (SELECT IFNULL(SUM(money),0) AS count, DATE_FORMAT(orderTime, '%H') AS hour FROM common_auth_order WHERE state = 1 AND TO_DAYS(NOW()) - TO_DAYS(orderTime) <![CDATA[<=]]> 1 GROUP BY hour ORDER BY 1) C ON C.hour = CONVERT(B.days, SIGNED)
+    ORDER BY days
+  </select>
+
+  <select id="getDaysOrderIncomeTotalList" resultType="map" parameterType="java.lang.Integer" >
+    set @d = #{days};
+    set @i = -1;
+    set @sql = repeat(" select 1 union all",-datediff(SUBDATE(CURDATE(),INTERVAL @d DAY),CURDATE()));
+    set @sql = left(@sql,length(@sql)-length(" union all"));
+    set @sql = concat("select B.days, IF(money IS NULL,0,money) money from
+    (SELECT E.days,CONVERT((IF(E.count IS NULL, 0, E.count) + IF(C.count IS NULL, 0, C.count)*100)/100, DECIMAL(10,2)) as money  FROM
+    (SELECT IFNULL(SUM(money),0) AS count, DATE_FORMAT(createTime, '%Y-%m-%d') AS days FROM common_order WHERE state = 2 AND DATE_SUB(CURDATE(), INTERVAL @d DAY) <![CDATA[<=]]> date(createTime) AND date(createTime) &lt; CURDATE() GROUP BY days ORDER BY 1) E
+    LEFT JOIN (SELECT IFNULL(SUM(money),0) AS count, DATE_FORMAT(orderTime, '%Y-%m-%d') AS days FROM common_auth_order WHERE state = 1 AND DATE_SUB(CURDATE(), INTERVAL @d DAY) <![CDATA[<=]]> date(orderTime) AND date(orderTime) &lt; CURDATE() GROUP BY days ORDER BY 1) C ON C.days=E.days
+    ORDER BY days) A
+    RIGHT JOIN (select date_add(SUBDATE(CURDATE(),INTERVAL @d DAY),interval @i:=@i+1 day) as days from (",@sql,") as tmp ) B ON B.days = A.days GROUP BY days ORDER BY 1");
+    prepare stmt from @sql;
+    execute stmt;
+  </select>
+
+  <select id="getCustomizeOrderIncomeTotalList" resultType="map" >
+    set @d1 = #{startDate};
+    set @d2 = #{endDate};
+    set @i = -1;
+    set @sql = repeat(" select 1 union all",-datediff(@d1,@d2)+1);
+    set @sql = left(@sql,length(@sql)-length(" union all"));
+    set @sql = concat("select B.days, IF(money IS NULL,0,money) money from
+    (SELECT E.days,CONVERT((IF(E.count IS NULL, 0, E.count) + IF(C.count IS NULL, 0, C.count)*100)/100, DECIMAL(10,2)) as money  FROM
+    (SELECT IFNULL(SUM(money),0) AS count, DATE_FORMAT(createTime, '%Y-%m-%d') AS days FROM common_order WHERE state = 2 AND date(createTime) BETWEEN @d1 AND @d2 GROUP BY days ORDER BY 1) E
+    LEFT JOIN (SELECT IFNULL(SUM(money),0) AS count, DATE_FORMAT(orderTime, '%Y-%m-%d') AS days FROM common_auth_order WHERE state = 1 AND date(orderTime) BETWEEN @d1 AND @d2 GROUP BY days ORDER BY 1) C ON C.days=E.days
+    ORDER BY days) A
+    RIGHT JOIN (select date_add(@d1,interval @i:=@i+1 day) as days from (",@sql,") as tmp ) B ON B.days = A.days GROUP BY days ORDER BY 1");
+    prepare stmt from @sql;
+    execute stmt;
+  </select>
+
+  <select id="getToadyCourseIncomeTotalList" resultType="map" >
+    SELECT DATE_FORMAT(createTime,'%H') hours,CONVERT((IF(SUM(money) IS NULL, 0, SUM(money)))/100, DECIMAL(10,2)) AS money FROM common_order WHERE shopingType = 5 AND state = 2 AND to_days(createTime) = to_days(now()) GROUP BY hours
+  </select>
+
+  <select id="getYesterdayCourseIncomeTotalList" resultType="map" >
+    SELECT DATE_FORMAT(createTime,'%H') hours,CONVERT((IF(SUM(money) IS NULL, 0, SUM(money)))/100, DECIMAL(10,2)) AS money FROM common_order WHERE shopingType = 5 AND state = 2 AND TO_DAYS(NOW()) - TO_DAYS(createTime) <![CDATA[<=]]> 1 GROUP BY hours
+  </select>
+
+  <select id="getDaysCourseIncomeTotalList" resultType="map" parameterType="java.lang.Integer" >
+    SELECT DATE_FORMAT(createTime,'%Y-%m-%d') days,CONVERT((IF(SUM(money) IS NULL, 0, SUM(money)))/100, DECIMAL(10,2)) AS money FROM common_order where shopingType = 5 AND state = 2 AND DATE_SUB(CURDATE(), INTERVAL #{days} DAY) <![CDATA[<=]]> date(createTime) AND date(createTime) &lt; CURDATE() GROUP BY days
+  </select>
+
+  <select id="getCustomizeCourseIncomeTotalList" resultType="map" >
+    SELECT DATE_FORMAT(createTime,'%Y-%m-%d') days,CONVERT((IF(SUM(money) IS NULL, 0, SUM(money)))/100, DECIMAL(10,2)) AS money FROM common_order where shopingType = 5 AND state = 2 AND createTime BETWEEN #{startDate} AND #{endDate} GROUP BY days
+  </select>
+
+  <select id="getCourseDaysDataList" resultType="map" >
+    SELECT DATE_FORMAT(createTime,'%Y-%m-%d') days,COUNT(1) AS count,CONVERT((IF(SUM(money) IS NULL, 0, SUM(money)))/100, DECIMAL(10,2)) AS money FROM common_order where shopingType = 5 AND state = 2 AND DATE_SUB(CURDATE(), INTERVAL 7 DAY) <![CDATA[<=]]> date(createTime) AND date(createTime) &lt; CURDATE() GROUP BY days
+  </select>
+</mapper>

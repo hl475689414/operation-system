@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wmq.sys.dao.CommonCompanyMapper" >
+  <resultMap id="BaseResultMap" type="com.wmq.sys.entity.CommonCompany" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="logo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="fullName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="website" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="address" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="business" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sceneUrl" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="staffNum" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="starText" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="city" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="phase" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="finance" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="slogan" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="content" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="longitude" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="latitude" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="masterUserId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="workImg" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="licenseImg" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="authState" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="successTalkTimes" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="talkTimes" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="isDelete" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="loginTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="fullRate" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="authOrder" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="authVip" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="openTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="expireTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="developmentResources" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="managementType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="professionType" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="setupTime" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, logo, title, fullName, website, address, business, sceneUrl, staffNum, starText, 
+    city, phase, finance, slogan, content, longitude, latitude, masterUserId, workImg, 
+    licenseImg, authState, createTime, successTalkTimes, talkTimes, isDelete, loginTime, 
+    fullRate, authOrder, authVip, openTime, expireTime, developmentResources, managementType, 
+    professionType, setupTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from common_company
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from common_company
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wmq.sys.entity.CommonCompany" >
+    insert into common_company (id, logo, title, 
+      fullName, website, address, 
+      business, sceneUrl, staffNum, 
+      starText, city, phase, 
+      finance, slogan, content, 
+      longitude, latitude, masterUserId, 
+      workImg, licenseImg, authState, 
+      createTime, successTalkTimes, talkTimes, 
+      isDelete, loginTime, fullRate, 
+      authOrder, authVip, openTime, 
+      expireTime, developmentResources, managementType, 
+      professionType, setupTime)
+    values (#{id,jdbcType=INTEGER}, #{logo,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{fullname,jdbcType=VARCHAR}, #{website,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{business,jdbcType=VARCHAR}, #{sceneurl,jdbcType=VARCHAR}, #{staffnum,jdbcType=INTEGER}, 
+      #{startext,jdbcType=VARCHAR}, #{city,jdbcType=INTEGER}, #{phase,jdbcType=INTEGER}, 
+      #{finance,jdbcType=INTEGER}, #{slogan,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{longitude,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, #{masteruserid,jdbcType=INTEGER}, 
+      #{workimg,jdbcType=VARCHAR}, #{licenseimg,jdbcType=VARCHAR}, #{authstate,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{successtalktimes,jdbcType=INTEGER}, #{talktimes,jdbcType=INTEGER}, 
+      #{isdelete,jdbcType=INTEGER}, #{logintime,jdbcType=TIMESTAMP}, #{fullrate,jdbcType=INTEGER},
+      #{authorder,jdbcType=INTEGER}, #{authvip,jdbcType=INTEGER}, #{opentime,jdbcType=TIMESTAMP}, 
+      #{expiretime,jdbcType=TIMESTAMP}, #{developmentresources,jdbcType=VARCHAR}, #{managementtype,jdbcType=INTEGER}, 
+      #{professiontype,jdbcType=INTEGER}, #{setuptime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wmq.sys.entity.CommonCompany" >
+    insert into common_company
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="fullname != null" >
+        fullName,
+      </if>
+      <if test="website != null" >
+        website,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="business != null" >
+        business,
+      </if>
+      <if test="sceneurl != null" >
+        sceneUrl,
+      </if>
+      <if test="staffnum != null" >
+        staffNum,
+      </if>
+      <if test="startext != null" >
+        starText,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="phase != null" >
+        phase,
+      </if>
+      <if test="finance != null" >
+        finance,
+      </if>
+      <if test="slogan != null" >
+        slogan,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="masteruserid != null" >
+        masterUserId,
+      </if>
+      <if test="workimg != null" >
+        workImg,
+      </if>
+      <if test="licenseimg != null" >
+        licenseImg,
+      </if>
+      <if test="authstate != null" >
+        authState,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="successtalktimes != null" >
+        successTalkTimes,
+      </if>
+      <if test="talktimes != null" >
+        talkTimes,
+      </if>
+      <if test="isdelete != null" >
+        isDelete,
+      </if>
+      <if test="logintime != null" >
+        loginTime,
+      </if>
+      <if test="fullrate != null" >
+        fullRate,
+      </if>
+      <if test="authorder != null" >
+        authOrder,
+      </if>
+      <if test="authvip != null" >
+        authVip,
+      </if>
+      <if test="opentime != null" >
+        openTime,
+      </if>
+      <if test="expiretime != null" >
+        expireTime,
+      </if>
+      <if test="developmentresources != null" >
+        developmentResources,
+      </if>
+      <if test="managementtype != null" >
+        managementType,
+      </if>
+      <if test="professiontype != null" >
+        professionType,
+      </if>
+      <if test="setuptime != null" >
+        setupTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="fullname != null" >
+        #{fullname,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null" >
+        #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="business != null" >
+        #{business,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneurl != null" >
+        #{sceneurl,jdbcType=VARCHAR},
+      </if>
+      <if test="staffnum != null" >
+        #{staffnum,jdbcType=INTEGER},
+      </if>
+      <if test="startext != null" >
+        #{startext,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=INTEGER},
+      </if>
+      <if test="phase != null" >
+        #{phase,jdbcType=INTEGER},
+      </if>
+      <if test="finance != null" >
+        #{finance,jdbcType=INTEGER},
+      </if>
+      <if test="slogan != null" >
+        #{slogan,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="masteruserid != null" >
+        #{masteruserid,jdbcType=INTEGER},
+      </if>
+      <if test="workimg != null" >
+        #{workimg,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseimg != null" >
+        #{licenseimg,jdbcType=VARCHAR},
+      </if>
+      <if test="authstate != null" >
+        #{authstate,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="successtalktimes != null" >
+        #{successtalktimes,jdbcType=INTEGER},
+      </if>
+      <if test="talktimes != null" >
+        #{talktimes,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="logintime != null" >
+        #{logintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fullrate != null" >
+        #{fullrate,jdbcType=INTEGER},
+      </if>
+      <if test="authorder != null" >
+        #{authorder,jdbcType=INTEGER},
+      </if>
+      <if test="authvip != null" >
+        #{authvip,jdbcType=INTEGER},
+      </if>
+      <if test="opentime != null" >
+        #{opentime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expiretime != null" >
+        #{expiretime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="developmentresources != null" >
+        #{developmentresources,jdbcType=VARCHAR},
+      </if>
+      <if test="managementtype != null" >
+        #{managementtype,jdbcType=INTEGER},
+      </if>
+      <if test="professiontype != null" >
+        #{professiontype,jdbcType=INTEGER},
+      </if>
+      <if test="setuptime != null" >
+        #{setuptime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wmq.sys.entity.CommonCompany" >
+    update common_company
+    <set >
+      <if test="logo != null" >
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="fullname != null" >
+        fullName = #{fullname,jdbcType=VARCHAR},
+      </if>
+      <if test="website != null" >
+        website = #{website,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="business != null" >
+        business = #{business,jdbcType=VARCHAR},
+      </if>
+      <if test="sceneurl != null" >
+        sceneUrl = #{sceneurl,jdbcType=VARCHAR},
+      </if>
+      <if test="staffnum != null" >
+        staffNum = #{staffnum,jdbcType=INTEGER},
+      </if>
+      <if test="startext != null" >
+        starText = #{startext,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=INTEGER},
+      </if>
+      <if test="phase != null" >
+        phase = #{phase,jdbcType=INTEGER},
+      </if>
+      <if test="finance != null" >
+        finance = #{finance,jdbcType=INTEGER},
+      </if>
+      <if test="slogan != null" >
+        slogan = #{slogan,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="masteruserid != null" >
+        masterUserId = #{masteruserid,jdbcType=INTEGER},
+      </if>
+      <if test="workimg != null" >
+        workImg = #{workimg,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseimg != null" >
+        licenseImg = #{licenseimg,jdbcType=VARCHAR},
+      </if>
+      <if test="authstate != null" >
+        authState = #{authstate,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="successtalktimes != null" >
+        successTalkTimes = #{successtalktimes,jdbcType=INTEGER},
+      </if>
+      <if test="talktimes != null" >
+        talkTimes = #{talktimes,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null" >
+        isDelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="logintime != null" >
+        loginTime = #{logintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fullrate != null" >
+        fullRate = #{fullrate,jdbcType=INTEGER},
+      </if>
+      <if test="authorder != null" >
+        authOrder = #{authorder,jdbcType=INTEGER},
+      </if>
+      <if test="authvip != null" >
+        authVip = #{authvip,jdbcType=INTEGER},
+      </if>
+      <if test="opentime != null" >
+        openTime = #{opentime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expiretime != null" >
+        expireTime = #{expiretime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="developmentresources != null" >
+        developmentResources = #{developmentresources,jdbcType=VARCHAR},
+      </if>
+      <if test="managementtype != null" >
+        managementType = #{managementtype,jdbcType=INTEGER},
+      </if>
+      <if test="professiontype != null" >
+        professionType = #{professiontype,jdbcType=INTEGER},
+      </if>
+      <if test="setuptime != null" >
+        setupTime = #{setuptime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wmq.sys.entity.CommonCompany" >
+    update common_company
+    set logo = #{logo,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      fullName = #{fullname,jdbcType=VARCHAR},
+      website = #{website,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      business = #{business,jdbcType=VARCHAR},
+      sceneUrl = #{sceneurl,jdbcType=VARCHAR},
+      staffNum = #{staffnum,jdbcType=INTEGER},
+      starText = #{startext,jdbcType=VARCHAR},
+      city = #{city,jdbcType=INTEGER},
+      phase = #{phase,jdbcType=INTEGER},
+      finance = #{finance,jdbcType=INTEGER},
+      slogan = #{slogan,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=VARCHAR},
+      masterUserId = #{masteruserid,jdbcType=INTEGER},
+      workImg = #{workimg,jdbcType=VARCHAR},
+      licenseImg = #{licenseimg,jdbcType=VARCHAR},
+      authState = #{authstate,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      successTalkTimes = #{successtalktimes,jdbcType=INTEGER},
+      talkTimes = #{talktimes,jdbcType=INTEGER},
+      isDelete = #{isdelete,jdbcType=INTEGER},
+      loginTime = #{logintime,jdbcType=TIMESTAMP},
+      fullRate = #{fullrate,jdbcType=INTEGER},
+      authOrder = #{authorder,jdbcType=INTEGER},
+      authVip = #{authvip,jdbcType=INTEGER},
+      openTime = #{opentime,jdbcType=TIMESTAMP},
+      expireTime = #{expiretime,jdbcType=TIMESTAMP},
+      developmentResources = #{developmentresources,jdbcType=VARCHAR},
+      managementType = #{managementtype,jdbcType=INTEGER},
+      professionType = #{professiontype,jdbcType=INTEGER},
+      setupTime = #{setuptime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getCompanyUserInfoVo" resultType="com.wmq.sys.vo.CompanyUserInfoVo" parameterType="java.lang.Integer" >
+    SELECT cc.id AS companyId,cc.authVip,cc.fullName,cus.position,cc.title,cc.website,cc.address,cus.email,cc.business,cb.`name` AS businessName,cc.staffNum,cc.starText,cc.content,cc.sceneUrl
+    FROM common_user cus
+    LEFT JOIN common_company cc on cc.id = cus.companyId
+	LEFT JOIN common_business cb on cb.id = cc.business
+    WHERE cc.isDelete = 0 AND cus.id = #{userId}
+  </select>
+</mapper>

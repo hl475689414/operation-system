@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wmq.sys.dao.RecruitJobExtendMapper" >
+  <resultMap id="BaseResultMap" type="com.wmq.sys.entity.RecruitJobExtend" >
+    <constructor >
+      <idArg column="jobId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="companyId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="classId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="jobRequire" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="jobInfo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="jobHot" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="replayRate" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    jobId, userId, companyId, title, classId, jobRequire, jobInfo, jobHot, replayRate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from recruit_job_extend
+    where jobId = #{jobid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from recruit_job_extend
+    where jobId = #{jobid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wmq.sys.entity.RecruitJobExtend" >
+    insert into recruit_job_extend (jobId, userId, companyId, 
+      title, classId, jobRequire, 
+      jobInfo, jobHot, replayRate
+      )
+    values (#{jobid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{companyid,jdbcType=INTEGER}, 
+      #{title,jdbcType=VARCHAR}, #{classid,jdbcType=INTEGER}, #{jobrequire,jdbcType=VARCHAR}, 
+      #{jobinfo,jdbcType=VARCHAR}, #{jobhot,jdbcType=VARCHAR}, #{replayrate,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wmq.sys.entity.RecruitJobExtend" >
+    insert into recruit_job_extend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="jobid != null" >
+        jobId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="companyid != null" >
+        companyId,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="classid != null" >
+        classId,
+      </if>
+      <if test="jobrequire != null" >
+        jobRequire,
+      </if>
+      <if test="jobinfo != null" >
+        jobInfo,
+      </if>
+      <if test="jobhot != null" >
+        jobHot,
+      </if>
+      <if test="replayrate != null" >
+        replayRate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="jobid != null" >
+        #{jobid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="companyid != null" >
+        #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="classid != null" >
+        #{classid,jdbcType=INTEGER},
+      </if>
+      <if test="jobrequire != null" >
+        #{jobrequire,jdbcType=VARCHAR},
+      </if>
+      <if test="jobinfo != null" >
+        #{jobinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="jobhot != null" >
+        #{jobhot,jdbcType=VARCHAR},
+      </if>
+      <if test="replayrate != null" >
+        #{replayrate,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wmq.sys.entity.RecruitJobExtend" >
+    update recruit_job_extend
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="companyid != null" >
+        companyId = #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="classid != null" >
+        classId = #{classid,jdbcType=INTEGER},
+      </if>
+      <if test="jobrequire != null" >
+        jobRequire = #{jobrequire,jdbcType=VARCHAR},
+      </if>
+      <if test="jobinfo != null" >
+        jobInfo = #{jobinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="jobhot != null" >
+        jobHot = #{jobhot,jdbcType=VARCHAR},
+      </if>
+      <if test="replayrate != null" >
+        replayRate = #{replayrate,jdbcType=INTEGER},
+      </if>
+    </set>
+    where jobId = #{jobid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wmq.sys.entity.RecruitJobExtend" >
+    update recruit_job_extend
+    set userId = #{userid,jdbcType=INTEGER},
+      companyId = #{companyid,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      classId = #{classid,jdbcType=INTEGER},
+      jobRequire = #{jobrequire,jdbcType=VARCHAR},
+      jobInfo = #{jobinfo,jdbcType=VARCHAR},
+      jobHot = #{jobhot,jdbcType=VARCHAR},
+      replayRate = #{replayrate,jdbcType=INTEGER}
+    where jobId = #{jobid,jdbcType=INTEGER}
+  </update>
+</mapper>

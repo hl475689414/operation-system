@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wmq.sys.dao.RecruitResumeVideoMapper" >
+  <resultMap id="BaseResultMap" type="com.wmq.sys.entity.RecruitResumeVideo" >
+    <constructor >
+      <idArg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="showVideo" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="thumbnail" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="videoId" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    userId, showVideo, url, thumbnail, state, videoId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from recruit_resume_video
+    where userId = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from recruit_resume_video
+    where userId = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wmq.sys.entity.RecruitResumeVideo" >
+    insert into recruit_resume_video (userId, showVideo, url, 
+      thumbnail, state, videoId
+      )
+    values (#{userid,jdbcType=INTEGER}, #{showvideo,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, 
+      #{thumbnail,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{videoid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wmq.sys.entity.RecruitResumeVideo" >
+    insert into recruit_resume_video
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="showvideo != null" >
+        showVideo,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="thumbnail != null" >
+        thumbnail,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="videoid != null" >
+        videoId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="showvideo != null" >
+        #{showvideo,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnail != null" >
+        #{thumbnail,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="videoid != null" >
+        #{videoid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wmq.sys.entity.RecruitResumeVideo" >
+    update recruit_resume_video
+    <set >
+      <if test="showvideo != null" >
+        showVideo = #{showvideo,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnail != null" >
+        thumbnail = #{thumbnail,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="videoid != null" >
+        videoId = #{videoid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userId = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wmq.sys.entity.RecruitResumeVideo" >
+    update recruit_resume_video
+    set showVideo = #{showvideo,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      thumbnail = #{thumbnail,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      videoId = #{videoid,jdbcType=VARCHAR}
+    where userId = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>

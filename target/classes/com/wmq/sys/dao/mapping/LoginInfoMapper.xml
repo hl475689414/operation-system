@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wmq.sys.dao.LoginInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.wmq.sys.entity.LoginInfo" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="longitude" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="latitude" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="netType" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="deviceType" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="deviceId" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sysVersion" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="crateTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="loginOut" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="ip" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="province" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="city" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userId, longitude, latitude, netType, deviceType, deviceId, sysVersion, crateTime, 
+    loginOut, ip, province, city
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from login_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from login_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wmq.sys.entity.LoginInfo" >
+    insert into login_info (id, userId, longitude, 
+      latitude, netType, deviceType, 
+      deviceId, sysVersion, crateTime, 
+      loginOut, ip, province, 
+      city)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{longitude,jdbcType=VARCHAR}, 
+      #{latitude,jdbcType=VARCHAR}, #{nettype,jdbcType=VARCHAR}, #{devicetype,jdbcType=VARCHAR}, 
+      #{deviceid,jdbcType=VARCHAR}, #{sysversion,jdbcType=VARCHAR}, #{cratetime,jdbcType=TIMESTAMP}, 
+      #{loginout,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wmq.sys.entity.LoginInfo" >
+    insert into login_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="nettype != null" >
+        netType,
+      </if>
+      <if test="devicetype != null" >
+        deviceType,
+      </if>
+      <if test="deviceid != null" >
+        deviceId,
+      </if>
+      <if test="sysversion != null" >
+        sysVersion,
+      </if>
+      <if test="cratetime != null" >
+        crateTime,
+      </if>
+      <if test="loginout != null" >
+        loginOut,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="nettype != null" >
+        #{nettype,jdbcType=VARCHAR},
+      </if>
+      <if test="devicetype != null" >
+        #{devicetype,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceid != null" >
+        #{deviceid,jdbcType=VARCHAR},
+      </if>
+      <if test="sysversion != null" >
+        #{sysversion,jdbcType=VARCHAR},
+      </if>
+      <if test="cratetime != null" >
+        #{cratetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginout != null" >
+        #{loginout,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wmq.sys.entity.LoginInfo" >
+    update login_info
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=VARCHAR},
+      </if>
+      <if test="nettype != null" >
+        netType = #{nettype,jdbcType=VARCHAR},
+      </if>
+      <if test="devicetype != null" >
+        deviceType = #{devicetype,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceid != null" >
+        deviceId = #{deviceid,jdbcType=VARCHAR},
+      </if>
+      <if test="sysversion != null" >
+        sysVersion = #{sysversion,jdbcType=VARCHAR},
+      </if>
+      <if test="cratetime != null" >
+        crateTime = #{cratetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginout != null" >
+        loginOut = #{loginout,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wmq.sys.entity.LoginInfo" >
+    update login_info
+    set userId = #{userid,jdbcType=INTEGER},
+      longitude = #{longitude,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=VARCHAR},
+      netType = #{nettype,jdbcType=VARCHAR},
+      deviceType = #{devicetype,jdbcType=VARCHAR},
+      deviceId = #{deviceid,jdbcType=VARCHAR},
+      sysVersion = #{sysversion,jdbcType=VARCHAR},
+      crateTime = #{cratetime,jdbcType=TIMESTAMP},
+      loginOut = #{loginout,jdbcType=INTEGER},
+      ip = #{ip,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getTodayStartTotal" resultType="java.lang.Integer" >
+    SELECT COUNT(distinct li.userId)
+    FROM login_info li
+    LEFT JOIN common_user cu on cu.id = li.userId
+    where cu.companyId = 0 and to_days(li.crateTime) = to_days(now())
+  </select>
+</mapper>

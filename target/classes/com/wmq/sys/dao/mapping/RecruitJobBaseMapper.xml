@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wmq.sys.dao.RecruitJobBaseMapper" >
+  <resultMap id="BaseResultMap" type="com.wmq.sys.entity.RecruitJobBase" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="companyId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="classId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="workCity" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="education" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="staffNum" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="payStart" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="payEnd" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="workYear" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="rank" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="viewNum" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="postNum" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="isExpress" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="isDelete" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="openTalkTimes" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="goodTalkTimes" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createTime" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="updateTime" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="displayState" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="expireTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="businessId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="recommendNum" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, companyId, classId, userId, workCity, education, staffNum, payStart, payEnd, 
+    workYear, rank, viewNum, postNum, isExpress, isDelete, openTalkTimes, goodTalkTimes, 
+    createTime, updateTime, displayState, expireTime, businessId, recommendNum
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from recruit_job_base
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from recruit_job_base
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wmq.sys.entity.RecruitJobBase" >
+    insert into recruit_job_base (id, companyId, classId, 
+      userId, workCity, education, 
+      staffNum, payStart, payEnd, 
+      workYear, rank, viewNum, 
+      postNum, isExpress, isDelete, 
+      openTalkTimes, goodTalkTimes, createTime, 
+      updateTime, displayState, expireTime, 
+      businessId, recommendNum)
+    values (#{id,jdbcType=INTEGER}, #{companyid,jdbcType=INTEGER}, #{classid,jdbcType=INTEGER}, 
+      #{userid,jdbcType=INTEGER}, #{workcity,jdbcType=INTEGER}, #{education,jdbcType=INTEGER},
+      #{staffnum,jdbcType=INTEGER}, #{paystart,jdbcType=INTEGER}, #{payend,jdbcType=INTEGER}, 
+      #{workyear,jdbcType=INTEGER}, #{rank,jdbcType=INTEGER}, #{viewnum,jdbcType=INTEGER},
+      #{postnum,jdbcType=INTEGER}, #{isexpress,jdbcType=INTEGER}, #{isdelete,jdbcType=INTEGER},
+      #{opentalktimes,jdbcType=INTEGER}, #{goodtalktimes,jdbcType=INTEGER}, #{createtime,jdbcType=BIGINT}, 
+      #{updatetime,jdbcType=BIGINT}, #{displaystate,jdbcType=INTEGER}, #{expiretime,jdbcType=TIMESTAMP}, 
+      #{businessid,jdbcType=INTEGER}, #{recommendnum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wmq.sys.entity.RecruitJobBase" >
+    insert into recruit_job_base
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="companyid != null" >
+        companyId,
+      </if>
+      <if test="classid != null" >
+        classId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="workcity != null" >
+        workCity,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="staffnum != null" >
+        staffNum,
+      </if>
+      <if test="paystart != null" >
+        payStart,
+      </if>
+      <if test="payend != null" >
+        payEnd,
+      </if>
+      <if test="workyear != null" >
+        workYear,
+      </if>
+      <if test="rank != null" >
+        rank,
+      </if>
+      <if test="viewnum != null" >
+        viewNum,
+      </if>
+      <if test="postnum != null" >
+        postNum,
+      </if>
+      <if test="isexpress != null" >
+        isExpress,
+      </if>
+      <if test="isdelete != null" >
+        isDelete,
+      </if>
+      <if test="opentalktimes != null" >
+        openTalkTimes,
+      </if>
+      <if test="goodtalktimes != null" >
+        goodTalkTimes,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="displaystate != null" >
+        displayState,
+      </if>
+      <if test="expiretime != null" >
+        expireTime,
+      </if>
+      <if test="businessid != null" >
+        businessId,
+      </if>
+      <if test="recommendnum != null" >
+        recommendNum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="companyid != null" >
+        #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="classid != null" >
+        #{classid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="workcity != null" >
+        #{workcity,jdbcType=INTEGER},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=INTEGER},
+      </if>
+      <if test="staffnum != null" >
+        #{staffnum,jdbcType=INTEGER},
+      </if>
+      <if test="paystart != null" >
+        #{paystart,jdbcType=INTEGER},
+      </if>
+      <if test="payend != null" >
+        #{payend,jdbcType=INTEGER},
+      </if>
+      <if test="workyear != null" >
+        #{workyear,jdbcType=INTEGER},
+      </if>
+      <if test="rank != null" >
+        #{rank,jdbcType=INTEGER},
+      </if>
+      <if test="viewnum != null" >
+        #{viewnum,jdbcType=INTEGER},
+      </if>
+      <if test="postnum != null" >
+        #{postnum,jdbcType=INTEGER},
+      </if>
+      <if test="isexpress != null" >
+        #{isexpress,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="opentalktimes != null" >
+        #{opentalktimes,jdbcType=INTEGER},
+      </if>
+      <if test="goodtalktimes != null" >
+        #{goodtalktimes,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=BIGINT},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=BIGINT},
+      </if>
+      <if test="displaystate != null" >
+        #{displaystate,jdbcType=INTEGER},
+      </if>
+      <if test="expiretime != null" >
+        #{expiretime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessid != null" >
+        #{businessid,jdbcType=INTEGER},
+      </if>
+      <if test="recommendnum != null" >
+        #{recommendnum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wmq.sys.entity.RecruitJobBase" >
+    update recruit_job_base
+    <set >
+      <if test="companyid != null" >
+        companyId = #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="classid != null" >
+        classId = #{classid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="workcity != null" >
+        workCity = #{workcity,jdbcType=INTEGER},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=INTEGER},
+      </if>
+      <if test="staffnum != null" >
+        staffNum = #{staffnum,jdbcType=INTEGER},
+      </if>
+      <if test="paystart != null" >
+        payStart = #{paystart,jdbcType=INTEGER},
+      </if>
+      <if test="payend != null" >
+        payEnd = #{payend,jdbcType=INTEGER},
+      </if>
+      <if test="workyear != null" >
+        workYear = #{workyear,jdbcType=INTEGER},
+      </if>
+      <if test="rank != null" >
+        rank = #{rank,jdbcType=INTEGER},
+      </if>
+      <if test="viewnum != null" >
+        viewNum = #{viewnum,jdbcType=INTEGER},
+      </if>
+      <if test="postnum != null" >
+        postNum = #{postnum,jdbcType=INTEGER},
+      </if>
+      <if test="isexpress != null" >
+        isExpress = #{isexpress,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null" >
+        isDelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="opentalktimes != null" >
+        openTalkTimes = #{opentalktimes,jdbcType=INTEGER},
+      </if>
+      <if test="goodtalktimes != null" >
+        goodTalkTimes = #{goodtalktimes,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=BIGINT},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=BIGINT},
+      </if>
+      <if test="displaystate != null" >
+        displayState = #{displaystate,jdbcType=INTEGER},
+      </if>
+      <if test="expiretime != null" >
+        expireTime = #{expiretime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessid != null" >
+        businessId = #{businessid,jdbcType=INTEGER},
+      </if>
+      <if test="recommendnum != null" >
+        recommendNum = #{recommendnum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wmq.sys.entity.RecruitJobBase" >
+    update recruit_job_base
+    set companyId = #{companyid,jdbcType=INTEGER},
+      classId = #{classid,jdbcType=INTEGER},
+      userId = #{userid,jdbcType=INTEGER},
+      workCity = #{workcity,jdbcType=INTEGER},
+      education = #{education,jdbcType=INTEGER},
+      staffNum = #{staffnum,jdbcType=INTEGER},
+      payStart = #{paystart,jdbcType=INTEGER},
+      payEnd = #{payend,jdbcType=INTEGER},
+      workYear = #{workyear,jdbcType=INTEGER},
+      rank = #{rank,jdbcType=INTEGER},
+      viewNum = #{viewnum,jdbcType=INTEGER},
+      postNum = #{postnum,jdbcType=INTEGER},
+      isExpress = #{isexpress,jdbcType=INTEGER},
+      isDelete = #{isdelete,jdbcType=INTEGER},
+      openTalkTimes = #{opentalktimes,jdbcType=INTEGER},
+      goodTalkTimes = #{goodtalktimes,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=BIGINT},
+      updateTime = #{updatetime,jdbcType=BIGINT},
+      displayState = #{displaystate,jdbcType=INTEGER},
+      expireTime = #{expiretime,jdbcType=TIMESTAMP},
+      businessId = #{businessid,jdbcType=INTEGER},
+      recommendNum = #{recommendnum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getJobBaseList" resultType="com.wmq.sys.vo.RecruitJobBaseListVo" parameterType="java.lang.Integer" >
+      SELECT rjb.id,rjb.classId,rjc.title AS className,rjb.displayState,rje.title,rjb.businessId AS business,cb.`name` AS businessTitle,rjb.payStart,rjb.payEnd,rjb.workYear,rjb.education,rjb.workCity AS cityId,cc.`name` AS cityName
+      FROM recruit_job_base rjb
+      LEFT JOIN recruit_job_extend rje on rje.jobId = rjb.id
+      LEFT JOIN recruit_job_class rjc on rjc.id = rjb.classId
+      LEFT JOIN common_business cb on cb.id = rjb.businessId
+      LEFT JOIN common_city cc on cc.id = rjb.workCity
+      WHERE rjb.companyId = #{companyId} AND rjb.isDelete = 0
+  </select>
+
+  <select id="getCompanyJobListPage" resultType="com.wmq.sys.vo.CompanyJobListVo" >
+    SELECT rjb.id AS jobId,rjb.classId,rjc.title AS className,rjb.workCity AS cityId,cc.`name` AS city,rjb.workYear,ccm.authVip AS vip,rjb.userId AS companyUserId,ccm.id AS companyId,ccm.fullName AS company,rjb.recommendNum
+    FROM recruit_job_base rjb
+    LEFT JOIN recruit_job_extend rje ON rje.jobId = rjb.id
+    LEFT JOIN recruit_job_class rjc ON rjc.id = rjb.classId
+    LEFT JOIN common_user cu on cu.id = rjb.userId
+    LEFT JOIN common_company ccm on ccm.id = cu.companyId
+    LEFT JOIN common_city cc on cc.id = rjb.workCity
+    WHERE rjb.isDelete = 0 AND rjb.displayState = 0 AND isExpress = 0 AND cu.isDelete = 0 AND cu.state = 0 AND ccm.isDelete = 0
+    <if test="key != '' and key != null">
+      AND (ccm.fullName LIKE CONCAT(CONCAT('%', #{key}), '%') OR cu.username LIKE CONCAT(CONCAT('%', #{key}), '%'))
+    </if>
+    <if test="classId > 0">
+      AND rjb.classId = #{classId}
+    </if>
+    <if test="cityId > 0">
+      AND rjb.workCity = #{cityId}
+    </if>
+    <if test="workYear > -2">
+      AND rjb.workYear = #{workYear}
+    </if>
+    <if test="vip > -1">
+      AND ccm.authVip = #{vip}
+    </if>
+    ORDER BY rjb.createTime DESC
+  </select>
+</mapper>

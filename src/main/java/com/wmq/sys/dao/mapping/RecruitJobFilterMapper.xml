@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wmq.sys.dao.RecruitJobFilterMapper" >
+  <resultMap id="BaseResultMap" type="com.wmq.sys.entity.RecruitJobFilter" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="workClassId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="businessId" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="workCity" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="workPayStart" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="workPayEnd" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="isDelete" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="education" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="workYear" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="isOpen" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createTime" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="recommendNum" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, userId, workClassId, businessId, workCity, workPayStart, workPayEnd, isDelete, 
+    education, workYear, isOpen, createTime, recommendNum
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from recruit_job_filter
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from recruit_job_filter
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wmq.sys.entity.RecruitJobFilter" >
+    insert into recruit_job_filter (id, userId, workClassId, 
+      businessId, workCity, workPayStart, 
+      workPayEnd, isDelete, education, 
+      workYear, isOpen, createTime, recommendNum
+      )
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{workclassid,jdbcType=INTEGER}, 
+      #{businessid,jdbcType=VARCHAR}, #{workcity,jdbcType=INTEGER}, #{workpaystart,jdbcType=INTEGER}, 
+      #{workpayend,jdbcType=INTEGER}, #{isdelete,jdbcType=INTEGER}, #{education,jdbcType=INTEGER},
+      #{workyear,jdbcType=INTEGER}, #{isopen,jdbcType=INTEGER}, #{createtime,jdbcType=BIGINT}, #{recommendNum,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wmq.sys.entity.RecruitJobFilter" >
+    insert into recruit_job_filter
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="workclassid != null" >
+        workClassId,
+      </if>
+      <if test="businessid != null" >
+        businessId,
+      </if>
+      <if test="workcity != null" >
+        workCity,
+      </if>
+      <if test="workpaystart != null" >
+        workPayStart,
+      </if>
+      <if test="workpayend != null" >
+        workPayEnd,
+      </if>
+      <if test="isdelete != null" >
+        isDelete,
+      </if>
+      <if test="education != null" >
+        education,
+      </if>
+      <if test="workyear != null" >
+        workYear,
+      </if>
+      <if test="isopen != null" >
+        isOpen,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="recommendnum != null" >
+        recommendNum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="workclassid != null" >
+        #{workclassid,jdbcType=INTEGER},
+      </if>
+      <if test="businessid != null" >
+        #{businessid,jdbcType=VARCHAR},
+      </if>
+      <if test="workcity != null" >
+        #{workcity,jdbcType=INTEGER},
+      </if>
+      <if test="workpaystart != null" >
+        #{workpaystart,jdbcType=INTEGER},
+      </if>
+      <if test="workpayend != null" >
+        #{workpayend,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=INTEGER},
+      </if>
+      <if test="workyear != null" >
+        #{workyear,jdbcType=INTEGER},
+      </if>
+      <if test="isopen != null" >
+        #{isopen,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=BIGINT},
+      </if>
+      <if test="recommendnum != null" >
+        #{recommendnum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wmq.sys.entity.RecruitJobFilter" >
+    update recruit_job_filter
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="workclassid != null" >
+        workClassId = #{workclassid,jdbcType=INTEGER},
+      </if>
+      <if test="businessid != null" >
+        businessId = #{businessid,jdbcType=VARCHAR},
+      </if>
+      <if test="workcity != null" >
+        workCity = #{workcity,jdbcType=INTEGER},
+      </if>
+      <if test="workpaystart != null" >
+        workPayStart = #{workpaystart,jdbcType=INTEGER},
+      </if>
+      <if test="workpayend != null" >
+        workPayEnd = #{workpayend,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null" >
+        isDelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="education != null" >
+        education = #{education,jdbcType=INTEGER},
+      </if>
+      <if test="workyear != null" >
+        workYear = #{workyear,jdbcType=INTEGER},
+      </if>
+      <if test="isopen != null" >
+        isOpen = #{isopen,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=BIGINT},
+      </if>
+      <if test="recommendnum != null" >
+        recommendNum = #{recommendnum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wmq.sys.entity.RecruitJobFilter" >
+    update recruit_job_filter
+    set userId = #{userid,jdbcType=INTEGER},
+      workClassId = #{workclassid,jdbcType=INTEGER},
+      businessId = #{businessid,jdbcType=VARCHAR},
+      workCity = #{workcity,jdbcType=INTEGER},
+      workPayStart = #{workpaystart,jdbcType=INTEGER},
+      workPayEnd = #{workpayend,jdbcType=INTEGER},
+      isDelete = #{isdelete,jdbcType=INTEGER},
+      education = #{education,jdbcType=INTEGER},
+      workYear = #{workyear,jdbcType=INTEGER},
+      isOpen = #{isopen,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=BIGINT},
+      recommendNum = #{recommendnum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getJobFilterList" resultType="com.wmq.sys.vo.RecruitJobFilterListVo" parameterType="java.lang.Integer" >
+    SELECT rjf.id,rjf.workClassId AS classId,rjc.title AS className,rjf.businessId,cb.`name` AS businessName,
+    rjf.workCity AS cityId,cc.`name` AS cityName,rjf.workPayStart,rjf.workPayEnd
+    FROM recruit_job_filter rjf
+    LEFT JOIN common_city cc on cc.id = rjf.workCity
+    LEFT JOIN common_business cb on cb.id = rjf.businessId
+    LEFT JOIN recruit_job_class rjc on rjc.id = rjf.workClassId
+    WHERE rjf.isDelete = 0 AND userId = #{userId} ORDER BY rjf.createTime DESC
+  </select>
+
+  <select id="getPersonnelListPage" resultType="com.wmq.sys.vo.PersonnelListVo" >
+    SELECT rjf.id AS filterId,rjf.workClassId AS workClassId,rjc.title AS className,rjf.userId,cu.truename,cu.username AS mobile,rjf.businessId,cb.`name` AS business,
+    rjf.workCity AS cityId,cc.`name` AS city,year(NOW())-rjf.workYear AS workYear,
+    date_format(cu.loginTime,'%Y-%m-%d %H:%m') AS loginTime,rjf.recommendNum,rr.entryState
+    FROM recruit_job_filter rjf
+    LEFT JOIN recruit_resume rr on rr.userId = rjf.userId
+    LEFT JOIN recruit_job_class rjc on rjc.id = rjf.workClassId
+    LEFT JOIN common_city cc on cc.id = rjf.workCity
+    LEFT JOIN common_business cb on cb.id = rjf.businessId
+    LEFT JOIN common_user cu on cu.id = rjf.userId
+    WHERE rjf.isDelete = 0 AND rjf.isOpen = 1 AND rr.isDelete = 0 AND cu.isDelete = 0 AND cu.state = 0
+    <if test="key != '' and key != null">
+      AND (cu.username LIKE CONCAT(CONCAT('%', #{key}), '%') OR cu.truename LIKE CONCAT(CONCAT('%', #{key}), '%'))
+    </if>
+    <if test="classId > 0">
+      AND rjf.workClassId = #{classId}
+    </if>
+    <if test="businessId > 0">
+      AND rjf.businessId = #{businessId}
+    </if>
+    <if test="cityId > 0">
+      AND rjf.workCity = #{cityId}
+    </if>
+    <if test="workYear == 0">
+      AND (year(NOW())-rjf.workYear) = 0
+    </if>
+    <if test="workYear == 1">
+      AND (year(NOW())-rjf.workYear) = 0
+    </if>
+    <if test="workYear == 2">
+      AND ((year(NOW())-rjf.workYear) >= 1 AND (year(NOW())-rjf.workYear) &lt; 4)
+    </if>
+    <if test="workYear == 3">
+      AND ((year(NOW())-rjf.workYear) >= 3 AND (year(NOW())-rjf.workYear) &lt; 6)
+    </if>
+    <if test="workYear == 4">
+      AND ((year(NOW())-rjf.workYear) >= 5 AND (year(NOW())-rjf.workYear) &lt; 11)
+    </if>
+    <if test="workYear == 5">
+      AND (year(NOW())-rjf.workYear) > 10
+    </if>
+    <if test="pushState > -1">
+      AND rjf.recommendNum = #{pushState}
+    </if>
+    <if test="resumeState > -1">
+      AND rr.entryState = #{resumeState}
+    </if>
+    ORDER BY cu.loginTime DESC
+  </select>
+</mapper>

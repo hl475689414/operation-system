@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wmq.sys.dao.RecruitCompanyVideoMapper" >
+  <resultMap id="BaseResultMap" type="com.wmq.sys.entity.RecruitCompanyVideo" >
+    <constructor >
+      <idArg column="companyId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="showVideo" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="url" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="thumbnail" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="videoId" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    companyId, showVideo, url, thumbnail, state, videoId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from recruit_company_video
+    where companyId = #{companyid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from recruit_company_video
+    where companyId = #{companyid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wmq.sys.entity.RecruitCompanyVideo" >
+    insert into recruit_company_video (companyId, showVideo, url, 
+      thumbnail, state, videoId
+      )
+    values (#{companyid,jdbcType=INTEGER}, #{showvideo,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, 
+      #{thumbnail,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, #{videoid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wmq.sys.entity.RecruitCompanyVideo" >
+    insert into recruit_company_video
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="companyid != null" >
+        companyId,
+      </if>
+      <if test="showvideo != null" >
+        showVideo,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="thumbnail != null" >
+        thumbnail,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="videoid != null" >
+        videoId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="companyid != null" >
+        #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="showvideo != null" >
+        #{showvideo,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnail != null" >
+        #{thumbnail,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="videoid != null" >
+        #{videoid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wmq.sys.entity.RecruitCompanyVideo" >
+    update recruit_company_video
+    <set >
+      <if test="showvideo != null" >
+        showVideo = #{showvideo,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnail != null" >
+        thumbnail = #{thumbnail,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="videoid != null" >
+        videoId = #{videoid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where companyId = #{companyid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wmq.sys.entity.RecruitCompanyVideo" >
+    update recruit_company_video
+    set showVideo = #{showvideo,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR},
+      thumbnail = #{thumbnail,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      videoId = #{videoid,jdbcType=VARCHAR}
+    where companyId = #{companyid,jdbcType=INTEGER}
+  </update>
+</mapper>

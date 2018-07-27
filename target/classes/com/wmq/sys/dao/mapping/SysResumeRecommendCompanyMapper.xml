@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wmq.sys.dao.SysResumeRecommendCompanyMapper" >
+  <resultMap id="BaseResultMap" type="com.wmq.sys.entity.SysResumeRecommendCompany" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="recommendUserId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="jobBaseId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="filterId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="sysUserId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, recommendUserId, jobBaseId, filterId, userId, sysUserId, createTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_resume_recommend_company
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_resume_recommend_company
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wmq.sys.entity.SysResumeRecommendCompany" >
+    insert into sys_resume_recommend_company (id, recommendUserId, jobBaseId, 
+      filterId, userId, sysUserId, createTime
+      )
+    values (#{id,jdbcType=INTEGER}, #{recommenduserid,jdbcType=INTEGER}, #{jobbaseid,jdbcType=INTEGER}, 
+      #{filterid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{sysuserid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wmq.sys.entity.SysResumeRecommendCompany" >
+    insert into sys_resume_recommend_company
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="recommenduserid != null" >
+        recommendUserId,
+      </if>
+      <if test="jobbaseid != null" >
+        jobBaseId,
+      </if>
+      <if test="filterid != null" >
+        filterId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="sysuserid != null" >
+        sysUserId,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="recommenduserid != null" >
+        #{recommenduserid,jdbcType=INTEGER},
+      </if>
+      <if test="jobbaseid != null" >
+        #{jobbaseid,jdbcType=INTEGER},
+      </if>
+      <if test="filterid != null" >
+        #{filterid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="sysuserid != null" >
+        #{sysuserid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wmq.sys.entity.SysResumeRecommendCompany" >
+    update sys_resume_recommend_company
+    <set >
+      <if test="recommenduserid != null" >
+        recommendUserId = #{recommenduserid,jdbcType=INTEGER},
+      </if>
+      <if test="jobbaseid != null" >
+        jobBaseId = #{jobbaseid,jdbcType=INTEGER},
+      </if>
+      <if test="filterid != null" >
+        filterId = #{filterid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="sysuserid != null" >
+        sysUserId = #{sysuserid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wmq.sys.entity.SysResumeRecommendCompany" >
+    update sys_resume_recommend_company
+    set recommendUserId = #{recommenduserid,jdbcType=INTEGER},
+      jobBaseId = #{jobbaseid,jdbcType=INTEGER},
+      filterId = #{filterid,jdbcType=INTEGER},
+      userId = #{userid,jdbcType=INTEGER},
+      sysUserId = #{sysuserid,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getMonthRecommendNum" resultType="java.lang.Integer" >
+    SELECT COUNT(1) FROM sys_resume_recommend_company WHERE DATE_FORMAT(createTime, '%Y%m') = DATE_FORMAT(CURDATE() , '%Y%m')
+  </select>
+
+  <select id="getPushRecord" resultType="java.lang.Integer" parameterType="com.wmq.sys.entity.SysResumeRecommendCompany" >
+    SELECT COUNT(1) FROM sys_resume_recommend_company WHERE recommendUserId = #{recommenduserid,jdbcType=INTEGER} AND jobBaseId = #{jobbaseid,jdbcType=INTEGER} AND filterId = #{filterid,jdbcType=INTEGER} AND userId = #{userid,jdbcType=INTEGER}
+  </select>
+
+  <select id="getPushRecordListPage" resultType="com.wmq.sys.vo.PersonnelPushRecordListVo" >
+    SELECT srrc.id,rjc.title AS className,cc.fullName AS company,sad.username AS sysUserName,rjb.recommendNum
+    FROM sys_resume_recommend_company srrc
+    LEFT JOIN recruit_job_base rjb on rjb.id = srrc.jobBaseId
+    LEFT JOIN recruit_job_class rjc on rjc.id = rjb.classId
+    LEFT JOIN common_user cu on cu.id = srrc.recommendUserId
+    LEFT JOIN common_company cc on cc.id = cu.companyId
+    LEFT JOIN sys_admin sad on sad.id = srrc.sysUserId
+    ORDER BY srrc.createTime DESC
+  </select>
+</mapper>
