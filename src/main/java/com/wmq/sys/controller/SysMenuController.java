@@ -50,13 +50,17 @@ public class SysMenuController extends BaseController {
         if(getParams().containsKey("perms")) {
             perms = getParams().getString("perms");
         }
+        String icon = null;
+        if(getParams().containsKey("icon")) {
+            icon = getParams().getString("icon");
+        }
         SystemMenu systemMenu = new SystemMenu();
         systemMenu.setParentId(parentId);
         systemMenu.setName(name);
         systemMenu.setUrl(url);
         systemMenu.setPerms(perms);
         systemMenu.setType(type);
-        systemMenu.setIcon(null);
+        systemMenu.setIcon(icon);
         systemMenu.setOrderNum(0);
         systemMenu.setCreateTime(new Date());
         systemMenu.setModifiedTime(new Date());
@@ -96,6 +100,10 @@ public class SysMenuController extends BaseController {
         if(getParams().containsKey("perms")) {
             perms = getParams().getString("perms");
         }
+        String icon = null;
+        if(getParams().containsKey("icon")) {
+            icon = getParams().getString("icon");
+        }
         SystemMenu systemMenu = new SystemMenu();
         systemMenu.setId(id);
         systemMenu.setParentId(parentId);
@@ -103,6 +111,7 @@ public class SysMenuController extends BaseController {
         systemMenu.setUrl(url);
         systemMenu.setPerms(perms);
         systemMenu.setType(type);
+        systemMenu.setIcon(icon);
         systemMenu.setModifiedTime(new Date());
         return systemMenuService.editSysMenu(systemMenu);
     }
@@ -116,5 +125,16 @@ public class SysMenuController extends BaseController {
     public JsonResult deleteSysMenu() {
         int id = getParams().getInt("id");
         return systemMenuService.deleteSysMenu(id);
+    }
+
+
+    /**
+     * 获取用户菜单列表
+     * @return
+     */
+    @RequestMapping("/getUserMenuList")
+    public JsonResult getUserMenuList() {
+        int id = getParams().getInt("id");
+        return systemMenuService.getUserMenuList(id);
     }
 }

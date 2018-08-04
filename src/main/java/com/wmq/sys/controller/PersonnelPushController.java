@@ -4,6 +4,7 @@ import com.wmq.sys.entity.ImdbMessage;
 import com.wmq.sys.entity.SysResumeRecommendCompany;
 import com.wmq.sys.service.PersonnelService;
 import com.wmq.sys.utils.JsonResult;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,7 @@ public class PersonnelPushController extends BaseController{
      * @return
      */
     @RequestMapping("/getPersonnelStatisticsData")
+    @RequiresPermissions("sys:personnel:seeData")
     public JsonResult getPersonnelStatisticsData() {
         return personnelService.getPersonnelStatisticsData();
     }
@@ -33,6 +35,7 @@ public class PersonnelPushController extends BaseController{
      * @return
      */
     @RequestMapping("/getPersonnelListPage")
+    @RequiresPermissions("sys:personnel:seeData")
     public JsonResult getPersonnelListPage() {
         String key = getParams().getString("key"); //搜索关键字
         int classId = getParams().getInt("classId"); //职位类型ID 0不限
@@ -49,6 +52,7 @@ public class PersonnelPushController extends BaseController{
      * @return
      */
     @RequestMapping("/getCompanyJobListPage")
+    @RequiresPermissions("sys:personnel:seeData")
     public JsonResult getCompanyJobListPage() {
         String key = getParams().getString("key"); //搜索关键字
         int classId = getParams().getInt("classId"); //职位类型ID 0不限
@@ -63,6 +67,7 @@ public class PersonnelPushController extends BaseController{
      * @return
      */
     @RequestMapping("/pushPersonnel")
+    @RequiresPermissions("sys:personnel:editPush")
     public JsonResult pushPersonnel() {
         int recommendUserId = getParams().getInt("recommendUserId"); //推送给此用户
         int jobBaseId = getParams().getInt("jobBaseId"); //招聘职位ID
@@ -106,6 +111,7 @@ public class PersonnelPushController extends BaseController{
      * @return
      */
     @RequestMapping("/getPushRecordListPage")
+    @RequiresPermissions("sys:personnel:seePushList")
     public JsonResult getPushRecordListPage() {
         return personnelService.getPushRecordListPage();
     }
@@ -115,6 +121,7 @@ public class PersonnelPushController extends BaseController{
      * @return
      */
     @RequestMapping("/updateRecruitResumeState")
+    @RequiresPermissions("sys:personnel:editResume")
     public JsonResult updateRecruitResumeState() {
         int userId = getParams().getInt("userId"); //用户ID
         int entryState = getParams().getInt("entryState"); //求职状态 0求职中 1已入职

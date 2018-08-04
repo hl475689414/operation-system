@@ -2,6 +2,7 @@ package com.wmq.sys.controller;
 
 import com.wmq.sys.service.ActiveUserService;
 import com.wmq.sys.utils.JsonResult;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,7 @@ public class ActiveUserController extends BaseController {
      * @return
      */
     @PostMapping(value = "/getActiveUserData")
+    @RequiresPermissions("sys:operations:seeData")
     public JsonResult getActiveUserData() {
         try{
             return activeUserService.getActiveUserData();

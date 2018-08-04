@@ -67,6 +67,7 @@ public class SystemMenuServiceImpl extends BaseService implements SystemMenuServ
                 mapArr.put("url", systemMenu.getUrl());
                 mapArr.put("perms", systemMenu.getPerms());
                 mapArr.put("type", systemMenu.getType());
+                mapArr.put("icon", systemMenu.getIcon());
                 if(allMenuChild(systemMenu.getId(), menuList).size() > 0) {
                     mapArr.put("childList", allMenuChild(systemMenu.getId(), menuList));
                 }
@@ -93,6 +94,7 @@ public class SystemMenuServiceImpl extends BaseService implements SystemMenuServ
                 childArray.put("url", systemMenu.getUrl());
                 childArray.put("perms", systemMenu.getPerms());
                 childArray.put("type", systemMenu.getType());
+                childArray.put("icon", systemMenu.getIcon());
                 if(menuChild(systemMenu.getId(), menuList).size() > 0) {
                     childArray.put("childList", allMenuChild(systemMenu.getId(), menuList));
                 }
@@ -230,5 +232,24 @@ public class SystemMenuServiceImpl extends BaseService implements SystemMenuServ
             currentMenuAllId(menu.getId(), list);
         }
         return listMenuId;
+    }
+
+
+    /**
+     * 获取用户菜单列表
+     * @param id
+     * @return
+     */
+    @Override
+    public JsonResult getUserMenuList(int id) {
+        List<SystemMenu> listmenu = new ArrayList<>();
+        if(id == 1) {
+            listmenu = systemMenuMapper.getAllMenuList();
+        }else {
+            listmenu = systemMenuMapper.getUserMenuList(id);
+        }
+        listAllTree = new ArrayList<>();
+        List<Object> list = generateAllMenuTree(listmenu);
+        return new JsonResult(0, "获取成功", list.size(), list);
     }
 }

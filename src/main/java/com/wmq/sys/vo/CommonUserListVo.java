@@ -13,6 +13,7 @@ public class CommonUserListVo {
     private String registerTime; //注册时间
     private String companyName; //公司名称
     private int state; //状态
+    private int vip; //vip
 
     public int getId() {
         return id;
@@ -84,5 +85,13 @@ public class CommonUserListVo {
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    public int getVip() {
+        return vip;
+    }
+
+    public void setVip(int vip) {
+        this.vip = vip;
     }
 }

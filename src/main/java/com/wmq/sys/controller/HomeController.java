@@ -3,6 +3,7 @@ package com.wmq.sys.controller;
 import com.wmq.sys.service.HomeService;
 import com.wmq.sys.utils.DateUtils;
 import com.wmq.sys.utils.JsonResult;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ public class HomeController  extends BaseController {
      * @return
      */
     @PostMapping(value = "/getTodayData")
+    @RequiresPermissions("sys:home:seeData")
     public JsonResult getTodayData() {
         try{
             return homeService.getTodayData();
@@ -36,6 +38,7 @@ public class HomeController  extends BaseController {
      * @return
      */
     @PostMapping(value = "/getTodayNewByHours")
+    @RequiresPermissions("sys:home:seeData")
     public JsonResult getTodayNewByHours() {
         try{
             return homeService.getTodayNewByHours();
@@ -50,6 +53,7 @@ public class HomeController  extends BaseController {
      * @return
      */
     @PostMapping(value = "/getTodayActiveByHours")
+    @RequiresPermissions("sys:home:seeData")
     public JsonResult getTodayActiveByHours() {
         try{
             return homeService.getTodayActiveByHours();
@@ -64,6 +68,7 @@ public class HomeController  extends BaseController {
      * @return
      */
     @PostMapping(value = "/getTodayLoginByHours")
+    @RequiresPermissions("sys:home:seeData")
     public JsonResult getTodayLoginByHours() {
         try{
             return homeService.getTodayLoginByHours();
@@ -78,6 +83,7 @@ public class HomeController  extends BaseController {
      * @return
      */
     @PostMapping(value = "/getTodayIncomeByHours")
+    @RequiresPermissions("sys:home:seeData")
     public JsonResult getTodayIncomeByHours() {
         try{
             return homeService.getTodayIncomeByHours();
@@ -92,6 +98,7 @@ public class HomeController  extends BaseController {
      * @return
      */
     @PostMapping(value = "/getDateNewByHours")
+    @RequiresPermissions("sys:home:seeData")
     public JsonResult getDateNewByHours() {
         try{
             String date = getParams().getString("date");
@@ -110,6 +117,7 @@ public class HomeController  extends BaseController {
      * @return
      */
     @PostMapping(value = "/getDateActiveByHours")
+    @RequiresPermissions("sys:home:seeData")
     public JsonResult getDateActiveByHours() {
         try{
             String date = getParams().getString("date");
@@ -128,6 +136,7 @@ public class HomeController  extends BaseController {
      * @return
      */
     @PostMapping(value = "/getDateLoginByHours")
+    @RequiresPermissions("sys:home:seeData")
     public JsonResult getDateLoginByHours() {
         try{
             String date = getParams().getString("date");
@@ -146,6 +155,7 @@ public class HomeController  extends BaseController {
      * @return
      */
     @PostMapping(value = "/getDateIncomeByHours")
+    @RequiresPermissions("sys:home:seeData")
     public JsonResult getDateIncomeByHours() {
         try{
             String date = getParams().getString("date");
@@ -164,6 +174,7 @@ public class HomeController  extends BaseController {
      * @return
      */
     @PostMapping(value = "/getNewByDays")
+    @RequiresPermissions("sys:home:seeData")
     public JsonResult getNewByDays() {
         try{
             Integer days = getParams().getInt("days");
@@ -179,6 +190,7 @@ public class HomeController  extends BaseController {
      * @return
      */
     @PostMapping(value = "/getActiveByDays")
+    @RequiresPermissions("sys:home:seeData")
     public JsonResult getActiveByDays() {
         try{
             Integer days = getParams().getInt("days");
@@ -194,6 +206,7 @@ public class HomeController  extends BaseController {
      * @return
      */
     @PostMapping(value = "/getLoginByDays")
+    @RequiresPermissions("sys:home:seeData")
     public JsonResult getLoginByDays() {
         try{
             Integer days = getParams().getInt("days");
@@ -209,6 +222,7 @@ public class HomeController  extends BaseController {
      * @return
      */
     @PostMapping(value = "/getIncomeByDays")
+    @RequiresPermissions("sys:home:seeData")
     public JsonResult getIncomeByDays() {
         try{
             Integer days = getParams().getInt("days");
@@ -224,6 +238,7 @@ public class HomeController  extends BaseController {
      * @return
      */
     @PostMapping(value = "/getNewByInterval")
+    @RequiresPermissions("sys:home:seeData")
     public JsonResult getNewByInterval() {
         try{
             String start = getParams().getString("start");
@@ -246,6 +261,7 @@ public class HomeController  extends BaseController {
      * @return
      */
     @PostMapping(value = "/getActiveByInterval")
+    @RequiresPermissions("sys:home:seeData")
     public JsonResult getActiveByInterval() {
         try{
             String start = getParams().getString("start");
@@ -268,6 +284,7 @@ public class HomeController  extends BaseController {
      * @return
      */
     @PostMapping(value = "/getLoginByInterval")
+    @RequiresPermissions("sys:home:seeData")
     public JsonResult getLoginByInterval() {
         try{
             String start = getParams().getString("start");
@@ -290,6 +307,7 @@ public class HomeController  extends BaseController {
      * @return
      */
     @PostMapping(value = "/getIncomeByInterval")
+    @RequiresPermissions("sys:home:seeData")
     public JsonResult getIncomeByInterval() {
         try{
             String start = getParams().getString("start");

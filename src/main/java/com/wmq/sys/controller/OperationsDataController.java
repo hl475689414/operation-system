@@ -2,6 +2,7 @@ package com.wmq.sys.controller;
 
 import com.wmq.sys.service.OperationsDataService;
 import com.wmq.sys.utils.JsonResult;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +26,7 @@ public class OperationsDataController extends BaseController {
      * @return
      */
     @RequestMapping("/getUserTrendOverview")
+    @RequiresPermissions("sys:operations:seeData")
     public JsonResult getUserTrendOverview(HttpServletRequest request, HttpServletResponse response) {
         return operationsDataService.getUserTrendOverview();
     }
@@ -36,6 +38,7 @@ public class OperationsDataController extends BaseController {
      * @return
      */
     @RequestMapping("/getUserTotalDataList")
+    @RequiresPermissions("sys:operations:seeData")
     public JsonResult getUserTotalDataList(HttpServletRequest request, HttpServletResponse response) {
         int days = getParams().getInt("days");
         int order = getParams().getInt("order");
@@ -55,6 +58,7 @@ public class OperationsDataController extends BaseController {
      * @return
      */
     @RequestMapping("/getNewRegisteredCompanyDataList")
+    @RequiresPermissions("sys:operations:seeData")
     public JsonResult getNewRegisteredCompanyDataList(HttpServletRequest request, HttpServletResponse response) {
         int days = getParams().getInt("days");
         int order = getParams().getInt("order");
@@ -74,6 +78,7 @@ public class OperationsDataController extends BaseController {
      * @return
      */
     @RequestMapping("/getNewPersonalDataList")
+    @RequiresPermissions("sys:operations:seeData")
     public JsonResult getNewPersonalDataList(HttpServletRequest request, HttpServletResponse response) {
         int days = getParams().getInt("days");
         int order = getParams().getInt("order");
@@ -93,6 +98,7 @@ public class OperationsDataController extends BaseController {
      * @return
      */
     @RequestMapping("/getStartupDataList")
+    @RequiresPermissions("sys:operations:seeData")
     public JsonResult getStartupDataList(HttpServletRequest request, HttpServletResponse response) {
         int days = getParams().getInt("days");
         int order = getParams().getInt("order");
@@ -112,6 +118,7 @@ public class OperationsDataController extends BaseController {
      * @return
      */
     @RequestMapping("/getDataList")
+    @RequiresPermissions("sys:operations:seeData")
     public JsonResult getDataList(HttpServletRequest request, HttpServletResponse response) {
         return operationsDataService.getDataList();
     }

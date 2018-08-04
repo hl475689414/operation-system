@@ -56,4 +56,11 @@ public interface SystemMenuService {
      * @return
      */
     JsonResult deleteSysMenu(int id);
+
+    /**
+     * 获取用户菜单列表
+     * @param id
+     * @return
+     */
+    JsonResult getUserMenuList(int id);
 }

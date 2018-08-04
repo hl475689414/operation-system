@@ -10,17 +10,16 @@ import com.wmq.sys.entity.SystemUser;
 import com.wmq.sys.redis.RedisCache;
 import com.wmq.sys.service.CommonService;
 import com.wmq.sys.utils.JsonResult;
+import com.wmq.sys.utils.oss.OSSUtil;
 import com.wmq.sys.vo.*;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by 李怀鹏 on 2018/5/14.
@@ -170,5 +169,31 @@ public class CommonServiceImpl extends BaseService implements CommonService {
             commonCityListVo1.setChildrenList(childrenVos);
         }
         return new JsonResult(0, "获取成功", cityList.size(), cityList);
+    }
+
+    /**
+     * 上传图片
+     * @param myFile
+     * @return
+     */
+    @Override
+    public JsonResult uploadImg(MultipartFile[] myFile) {
+        StringBuffer imgName = new StringBuffer();
+        for (MultipartFile myfile : myFile) {
+            if (myfile.isEmpty()) {
+                return new JsonResult(1, "上传图片不能为空", 0, null);
+            } else {
+                String newFileName = UUID.randomUUID()
+                        + myfile.getOriginalFilename().substring(myfile.getOriginalFilename().lastIndexOf("."));
+                try {
+                    OSSUtil.uploadFile(newFileName, myfile);
+                    imgName.append("https://lskxx.oss-cn-shenzhen.aliyuncs.com/" + newFileName + ",");
+                } catch (Exception e) {
+                    logger.info(e.getMessage());
+                    return new JsonResult(1, e.getMessage(), 0, null);
+                }
+            }
+        }
+        return new JsonResult(0, "成功", myFile.length, imgName.toString().substring(0, imgName.toString().length() - 1));
     }
 }

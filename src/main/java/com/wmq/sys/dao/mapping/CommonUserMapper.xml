@@ -354,7 +354,7 @@
   </update>
 
   <select id="getUserListPage" resultType="com.wmq.sys.vo.CommonUserListVo" >
-    SELECT cus.id,cc.id AS companyId,cus.username AS userName,cus.truename AS trueName,cus.gender,cus.loginTime,cus.registerTime,cc.fullName AS companyName,cus.state
+    SELECT cus.id,cc.id AS companyId,cus.username AS userName,cus.truename AS trueName,cus.gender,cus.loginTime,cus.registerTime,cc.fullName AS companyName,cus.state,cc.authVip AS vip
     FROM
     common_user cus
     LEFT JOIN common_company cc on cc.id = cus.companyId

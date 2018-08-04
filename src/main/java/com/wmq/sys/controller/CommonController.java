@@ -6,7 +6,10 @@ import com.wmq.sys.utils.*;
 import com.wmq.sys.utils.smssend.SendCodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -171,5 +174,15 @@ public class CommonController extends BaseController {
     @RequestMapping(value = "/noAuthority")
     public JsonResult noAuthority() {
         return new JsonResult(Constants.NOAUTHORITY, "权限不足，请向管理员申请权限");
+    }
+
+    /**
+     * 上传图片
+     * @param myFile
+     * @return
+     */
+    @RequestMapping(value = "/uploadImg", method = RequestMethod.POST)
+    public JsonResult uploadImg(@RequestParam MultipartFile[] myFile) {
+        return commonService.uploadImg(myFile);
     }
 }

@@ -2,6 +2,7 @@ package com.wmq.sys.controller;
 
 import com.wmq.sys.service.RevenueAmountService;
 import com.wmq.sys.utils.JsonResult;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +26,7 @@ public class RevenueAmountController extends BaseController {
      * @return
      */
     @RequestMapping("/getRevenueAmountOverview")
+    @RequiresPermissions("sys:revenue:seeData")
     public JsonResult getRevenueAmountOverview(HttpServletRequest request, HttpServletResponse response) {
         return revenueAmountService.getRevenueAmountOverview();
     }
@@ -36,6 +38,7 @@ public class RevenueAmountController extends BaseController {
      * @return
      */
     @RequestMapping("/getRevenueAmountDataList")
+    @RequiresPermissions("sys:revenue:seeData")
     public JsonResult getRevenueAmountDataList(HttpServletRequest request, HttpServletResponse response) {
         int days = getParams().getInt("days");
         int order = getParams().getInt("order");
@@ -55,6 +58,7 @@ public class RevenueAmountController extends BaseController {
      * @return
      */
     @RequestMapping("/getCourseAmountDataList")
+    @RequiresPermissions("sys:revenue:seeData")
     public JsonResult getCourseAmountDataList(HttpServletRequest request, HttpServletResponse response) {
         int days = getParams().getInt("days");
         int order = getParams().getInt("order");
@@ -74,6 +78,7 @@ public class RevenueAmountController extends BaseController {
      * @return
      */
     @RequestMapping("/getVipAmountDataList")
+    @RequiresPermissions("sys:revenue:seeData")
     public JsonResult getVipAmountDataList(HttpServletRequest request, HttpServletResponse response) {
         int days = getParams().getInt("days");
         int order = getParams().getInt("order");
@@ -93,6 +98,7 @@ public class RevenueAmountController extends BaseController {
      * @return
      */
     @RequestMapping("/getUpgradeVipAmountDataList")
+    @RequiresPermissions("sys:revenue:seeData")
     public JsonResult getUpgradeVipAmountDataList(HttpServletRequest request, HttpServletResponse response) {
         int days = getParams().getInt("days");
         int order = getParams().getInt("order");
@@ -112,6 +118,7 @@ public class RevenueAmountController extends BaseController {
      * @return
      */
     @RequestMapping("/getRevenueDataList")
+    @RequiresPermissions("sys:revenue:seeData")
     public JsonResult getRevenueDataList(HttpServletRequest request, HttpServletResponse response) {
         return revenueAmountService.getRevenueDataList();
     }

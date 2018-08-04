@@ -26,4 +26,6 @@ public interface SystemMenuMapper {
     List<SystemMenu> getAllMenuList();
 
     int deleteByListId(List<Integer> list);
+
+    List<SystemMenu> getUserMenuList(Integer id);
 }

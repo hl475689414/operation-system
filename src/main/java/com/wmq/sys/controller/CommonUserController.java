@@ -2,6 +2,7 @@ package com.wmq.sys.controller;
 
 import com.wmq.sys.service.CommonUserService;
 import com.wmq.sys.utils.JsonResult;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +26,7 @@ public class CommonUserController extends BaseController {
      * @return
      */
     @RequestMapping("/getCommonUserList")
+    @RequiresPermissions("sys:user:userList")
     public JsonResult getCommonUserList(HttpServletRequest request, HttpServletResponse response) {
         String keys = getParams().getString("keys"); //搜索关键字
         int sex = getParams().getInt("sex"); //性别
@@ -40,6 +42,7 @@ public class CommonUserController extends BaseController {
      * @return
      */
     @RequestMapping("/getUserInfo")
+    @RequiresPermissions("sys:user:userInfo")
     public JsonResult getUserInfo(HttpServletRequest request, HttpServletResponse response) {
         int userId = getParams().getInt("userId");
         return commonUserService.getUserInfo(userId);
@@ -52,6 +55,7 @@ public class CommonUserController extends BaseController {
      * @return
      */
     @RequestMapping("/getPersonalUserInfo")
+    @RequiresPermissions("sys:user:userInfo")
     public JsonResult getPersonalUserInfo(HttpServletRequest request, HttpServletResponse response) {
         int userId = getParams().getInt("userId");
         return commonUserService.getPersonalUserInfo(userId);
@@ -64,6 +68,7 @@ public class CommonUserController extends BaseController {
      * @return
      */
     @RequestMapping("/getCompanyUserInfo")
+    @RequiresPermissions("sys:user:userInfo")
     public JsonResult getCompanyUserInfo(HttpServletRequest request, HttpServletResponse response) {
         int userId = getParams().getInt("userId");
         return commonUserService.getCompanyUserInfo(userId);

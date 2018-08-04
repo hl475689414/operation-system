@@ -1,6 +1,7 @@
 package com.wmq.sys.service;
 
 import com.wmq.sys.utils.JsonResult;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Created by 李怀鹏 on 2018/5/14.
@@ -31,4 +32,11 @@ public interface CommonService {
      * @return
      */
     JsonResult getCityList();
+
+    /**
+     * 上传图片
+     * @param myFile
+     * @return
+     */
+    JsonResult uploadImg(MultipartFile[] myFile);
 }
