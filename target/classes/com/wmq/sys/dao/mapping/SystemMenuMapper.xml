@@ -175,4 +175,12 @@
       #{item}
     </foreach>
   </delete>
+
+  <select id="getUserMenuList" resultType="com.wmq.sys.entity.SystemMenu" parameterType="java.lang.Integer">
+    select m.*
+    from system_menu m
+    left join system_role_menu rm on m.id = rm.menuId
+    left join system_user sus on rm.roleId = sus.roleId
+    where sus.id = #{id} ORDER BY orderNum DESC
+  </select>
 </mapper>
